@@ -1,0 +1,157 @@
+import UpdateForm from "../../Forms/UpdatePostForm"; 
+
+import {Link,useNavigate } from "react-router-dom";
+import axios from "axios";
+import Searching from "./Searching";
+import { useEffect, useState } from "react";
+ import LoginButton from "../../Buttons/LoginButton";
+ import LogOut from "../../Buttons/LogOut";
+import Delete from "../../Buttons/DeleteButton";
+import Update from "../../Buttons/UpdatePostButton"
+
+function AllProduct(){
+//for product id
+let [SelectedProductId,SetSelectedProductId]=useState(null)
+
+//for sending the whole product for prefilling the update
+let [SelectedProduct,SetSelectedProduct]=useState(null);
+
+    let [ShowForm,SetShowForm]=useState(false)
+       let [Loading,SetLoading]=useState(true);
+    let [Product,SetProduct]=useState([])
+let Navigate=useNavigate()
+     let [IsLoggedIn,setIsLoggedIn]=useState(null);
+    let [Role,SetRole]=useState(null);    
+ //her we display the whole product
+ useEffect(()=>{
+    let checkLogin=async()=>{
+            try{
+
+            let response =await axios.get("http://localhost:5555/api/checkLogin", { withCredentials: true });
+            if(response.data.isLoggedIn===true){
+                setIsLoggedIn(true);
+                SetRole(response.data.Role)  //store role
+  console.log(response.data.Role);
+                      
+            }
+            else{
+                setIsLoggedIn(false)
+                SetRole(null);
+                console.log(response.data.Role)
+            }
+        }
+        catch(error){
+            console.log("error",error)
+        }}
+    
+    let DisplayProduct=async()=>{
+        try{
+        let response=await axios.get("http://localhost:5555/UploadItem/DisplayProduct");
+        console.log(response.data);
+        if(response.data){
+            //.Product is come forma a backend because in this object the real product is present
+            SetProduct(response.data.Product)
+        }
+    }    
+    catch(error){
+        console.log("error",error)
+    }
+    finally{
+        SetLoading(false)
+    }
+}
+
+checkLogin()
+        DisplayProduct();
+        },[]);
+
+        //it is used for a redirectional
+        useEffect(()=>{
+            if(IsLoggedIn===true && Role==="Admin"){
+                Navigate("/Home");
+            }
+            if(IsLoggedIn===true && Role==="User"){
+                Navigate("/");
+            }
+        },[IsLoggedIn,Role])
+
+
+
+        if(Loading){
+            return(
+                <div className="flex justify-center justify-items-center h-[40vh]">
+            <div className="animate-spin rounded-full h-36 w-36 border-b-4 border-blue-600"></div>
+            </div>
+        );}
+
+    return(
+<div>
+
+{/* //this is for show the update form */}
+{ShowForm && <UpdateForm Close={() =>
+ SetShowForm(false)} 
+ ProductId={SelectedProductId}
+ Product={SelectedProduct} //here we pass the full product for prefiilling the updated form
+ />}
+
+ <Searching    SetProduct={SetProduct}  />  
+ <div className="min-h-screen bg-gray-100 px-6 py-6   overflow-x-hidden">
+
+ <section className="flex justify-end gap-4 ">
+
+
+            {Role!=="Admin" && 
+            <LoginButton IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} /> 
+            }
+
+            <LogOut  IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} Role={Role} SetRole={SetRole}/>  
+
+         </section> 
+             <section className="grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5 overflow-hidden    ">
+                { 
+                    Product.map((product,index)=>(
+                        <section className="  bg-white rounded-xl shadow-xl hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2   "key={index} style={{maxWidth:"220px"}}>
+                        {product.images&&(
+                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl"  />)}
+
+                            <h2 className="pl-5  text-lg  font-semibold ">
+                                    {product.price } Rs
+                            </h2>
+
+                            <h2 className="text-xl font-bold text-gray-800 pl-5 truncate ">
+                                        {product.title}
+                        </h2>
+                        {/* <p className="text-xl font-semibold text-gray-800  truncate pl-5">
+                                    {/* {product.description} 
+                        </p> */}
+                         <Link to={`/More/${product._id}`} className="pl-5 text-blue-400">More</Link>
+
+                        {
+                            Role==="Admin"&& (
+                                <div className="grid grid-cols-2 justify-items-center">
+                            <Update onClick={()=>{
+                                SetShowForm(true);
+                                SetSelectedProductId(product._id);
+                                SetSelectedProduct(product)  
+                            }
+                            }/>
+                            <Delete/>
+                            </div>
+                            )
+                        }                 
+                      
+
+                        </section>
+                    ))
+                }
+
+            </section>
+
+        </div> 
+
+      </div>
+
+    )
+
+            }
+export default AllProduct

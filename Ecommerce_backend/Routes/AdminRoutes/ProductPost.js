@@ -1,0 +1,37 @@
+let {validationResult}=require("express-validator");
+let ProductDatabase=require("../../Database/ProductListing.js")
+
+
+let ProductPost=async (req,res)=>{
+    try{
+//handle validation error
+        let error=validationResult(req);
+if(!error.isEmpty()){
+    return res.status(400).json({message:"theiris eror",error:error.array()})
+}
+console.log("no erorr");
+        let {title,description,images,price,stock,sizes,category}=req.body;
+    //check file is uplaod
+    if(!req.file){
+        return res.status(400).json({message:"file is required"});
+    }
+    let data=new ProductDatabase({
+        title,
+        description,
+        images:req.file.filename,
+        price,
+        stock,
+        sizes,
+        category,
+    });
+    console.log("data is correct",req.file);
+    let result=await data.save();
+    res.status(200).json({message:"correct api",result});
+    console.log(data)
+} 
+catch(err){
+    console.log(err)
+    res.status(500).json({message:"internal error"})
+}
+}
+module.exports=ProductPost;
