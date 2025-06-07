@@ -36,7 +36,6 @@ category:yup.array().of(yup.string()).required("all fields are mandatory").min(1
 
 
 let UpdateForm=({Close,ProductId,Product})=>{
-let [ImagePreview,SetImagePreview]=useState(null)
     let {
         register,
         handleSubmit,
@@ -60,19 +59,19 @@ let [ImagePreview,SetImagePreview]=useState(null)
       setValue("sizes",Product.sizes);
        setValue("category",Product.category)
 
-       //for review the image
-       if(Product.images){
-        SetImagePreview(`http://localhost:5555/UploadItem/UploadPost/${Product.images}`);
+      //  //for review the image
+      //  if(Product.images){
+      //   SetImagePreview(`http://localhost:5555/UploadItem/UploadPost/${Product.images}`);
 
-       }
+      //  }
     }
   },[Product,setValue])
-    let onchangeimage=(e)=>{
-      let file=e.target.files[0];
-      if(file){
-        SetImagePreview(URL.createObjectURL(file)); //show imae url
-      }
-    };
+    // let onchangeimage=(e)=>{
+    //   let file=e.target.files[0];
+    //   if(file){
+    //     SetImagePreview(URL.createObjectURL(file)); //show imae url
+    //   }
+    // };
 
 
     async function UpdateFunction(data){

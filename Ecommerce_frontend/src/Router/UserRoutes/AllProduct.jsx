@@ -10,7 +10,7 @@ import Delete from "../../Buttons/DeleteButton";
 import Update from "../../Buttons/UpdatePostButton"
 
 function AllProduct(){
-//for product id
+//for product id to find and updated
 let [SelectedProductId,SetSelectedProductId]=useState(null)
 
 //for sending the whole product for prefilling the update
@@ -90,7 +90,7 @@ checkLogin()
 {/* //this is for show the update form */}
 {ShowForm && <UpdateForm Close={() =>
  SetShowForm(false)} 
- ProductId={SelectedProductId}
+ ProductId={SelectedProductId} //her we pass the id of the product to update
  Product={SelectedProduct} //here we pass the full product for prefiilling the updated form
  />}
 
@@ -115,7 +115,7 @@ checkLogin()
                             <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl"  />)}
 
                             <h2 className="pl-5  text-lg  font-semibold ">
-                                    {product.price } Rs
+                                     RS {product.price } 
                             </h2>
 
                             <h2 className="text-xl font-bold text-gray-800 pl-5 truncate ">
@@ -124,18 +124,26 @@ checkLogin()
                         {/* <p className="text-xl font-semibold text-gray-800  truncate pl-5">
                                     {/* {product.description} 
                         </p> */}
+                        {Role==="User"&&
                          <Link to={`/More/${product._id}`} className="pl-5 text-blue-400">More</Link>
+                        }
+                        {Role==="Admin"&&
+                        <Link to={`/AdminMore/${product._id}`} className="text-blue-400 pl-5">More</Link>}
 
                         {
                             Role==="Admin"&& (
                                 <div className="grid grid-cols-2 justify-items-center">
+                            
                             <Update onClick={()=>{
                                 SetShowForm(true);
-                                SetSelectedProductId(product._id);
-                                SetSelectedProduct(product)  
+                                SetSelectedProductId(product._id);    //for product id to find and updated
+                                SetSelectedProduct(product)            //for sending the whole product for prefilling the update
                             }
+                            
+                            
+
                             }/>
-                            <Delete/>
+                            <Delete ProductId={product._id}/> {/*  for delete product by id  */}
                             </div>
                             )
                         }                 

@@ -8,13 +8,15 @@ import Home from "./UserRoutes/home.jsx";
 import ContactUs from "./UserRoutes/ContactUs.jsx";
 import SignUp from "../Forms/SignUp.jsx";
 import Display from "./UserRoutes/display.jsx";
+import More from "./UserRoutes/UserMore.jsx";
 
 //this is a Admin Router
 import AdminRoutes_Link from "./AdminRoutes/AdminRoute_Link.jsx";
 import AdminHome  from "./AdminRoutes/AdminHome.jsx";
 import Order_Mangement from "./AdminRoutes/Order_Management.jsx";
 import PostItem from "./AdminRoutes/PostItem.jsx"
-import More from "./UserRoutes/More.jsx";
+import AdminMore from "./AdminRoutes/AdminMore.jsx";
+
 function App(){
     return (
         <div >
@@ -31,6 +33,7 @@ function App(){
                </Route>
                 {/* for admin routes */}
                 <Route element={<AdminRoutes_Link/>}>
+                <Route path="/AdminMore/:id" element={<AdminMore/>}/>
                <Route path="/Home" element={<AdminHome/>}/>
                <Route path="/Post" element={<PostItem/>}/>
                <Route path="/Order_Management" element={<Order_Mangement/>}/>
