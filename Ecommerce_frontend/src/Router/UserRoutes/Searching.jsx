@@ -40,10 +40,10 @@ function Searching({SetProduct}){
                 SetSearching((prev)=>
                 ({...prev,price:e.target.value}))}>
                     <option value="">select range</option>
-                    <option value="0-2000">0-2000</option>
-                    <option  value="2000-5000">2000-5000</option>
-                    <option value="5000-8000">5000-8000</option>
-                    <option value="8000-1000000">greater than 8000</option>
+                    <option value="2000">below 2000</option>
+                    <option  value="5000">below 5000</option>
+                    <option value="8000">below 8000</option>
+                    <option value="20000">below 20000</option>
                 </select>
                 
                 </form>

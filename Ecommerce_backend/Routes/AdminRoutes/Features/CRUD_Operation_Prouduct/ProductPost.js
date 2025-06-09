@@ -1,5 +1,5 @@
 let {validationResult}=require("express-validator");
-let ProductDatabase=require("../../Database/ProductListing.js")
+let ProductDatabase=require("../../../../Database/ProductListing.js")
 
 
 let ProductPost=async (req,res)=>{

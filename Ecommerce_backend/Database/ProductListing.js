@@ -16,13 +16,13 @@ let Sch=new mongoose.Schema({
         required:true
     },
     price:{
-        type:String,
+        type:Number,
         required:true,
         match:[/^[0-9]+$/],
         min:1
     },
     stock:{
-        type:String,
+        type:Number,
         required:true,
         match:[/^[0-9]+$/],
         min:0

@@ -3,15 +3,15 @@ let path=require("path")
 let upload=require("./multer");
 //for validation
 let ProductValidation=require("../../validation/ProductListingValidation")
-let DisplayProduct=require("./DisplayProduct");
-let DeleteProduct=require("./Delete_Product");
+let DisplayProduct=require("./Features/CRUD_Operation_Prouduct/DisplayProduct");
+let DeleteProduct=require("./Features/CRUD_Operation_Prouduct/Delete_Product");
 
 //this is fro a function 
-let ProductPost=require("./ProductPost");
+let ProductPost=require("./Features/CRUD_Operation_Prouduct/ProductPost");
 
 let express=require("express");
 const DisplayProductDetail = require("./DisplayProductDetail"); 
-const UpdateProduct = require("./UpdateProduct");
+const UpdateProduct = require("./Features/CRUD_Operation_Prouduct/UpdateProduct");
 let AdminRoute=express.Router();
 //it is used for a uploading picture of a item
 AdminRoute.use("/UploadPost",express.static(path.join(__dirname,"../../UploadPost")));

@@ -18,13 +18,12 @@ let Searching = async (req, res) => {
 
     // Add price filter if price range is provided like "2000-5000"
     if (price) {
-      const [min, max] = price.split("-").map(Number);
-      if (!isNaN(min) && !isNaN(max)) {
         filters.push({
-          price: { $gte: min, $lte: max },
-        });
-      }
-    }
+          price: { $lte: price }, //only show thos product  whose value or price is  less or equal to  price
+         }
+         );
+      
+     }
 
     // Combine filters (AND logic)
     const query = filters.length > 0 ? { $and: filters } : {};

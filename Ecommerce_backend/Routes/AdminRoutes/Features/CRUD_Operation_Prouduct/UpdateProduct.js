@@ -1,5 +1,5 @@
 let {validationResult}=require("express-validator");
-let mongoose=require("../../Database/ProductListing");
+let mongoose=require("../../../../Database/ProductListing");
 
 
 let UpdateProduct=async(req,res)=>{

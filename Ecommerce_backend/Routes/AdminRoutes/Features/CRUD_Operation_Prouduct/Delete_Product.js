@@ -1,4 +1,4 @@
-let mongoose=require("../../Database/ProductListing");
+let mongoose=require("../../../../Database/ProductListing");
 
 let DeleteProduct=async(req,res)=>{
 try{

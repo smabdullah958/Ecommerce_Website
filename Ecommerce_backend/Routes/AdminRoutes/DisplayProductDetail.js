@@ -1,4 +1,4 @@
-let ProductDatabase=require("../../Database/ProductListing");
+let ProductDatabase=require("../../Database/ProductListing.js");
 let DisplayProductDetail=async(req,res)=>{
     try{
     let ProductDetail=await ProductDatabase.findById(req.params.id);

@@ -1,4 +1,4 @@
-import UpdateForm from "../../Forms/UpdatePostForm"; 
+import UpdateForm from "../../Forms/UpdatePostForm";
 
 import {Link,useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -21,7 +21,7 @@ let [SelectedProduct,SetSelectedProduct]=useState(null);
     let [Product,SetProduct]=useState([])
 let Navigate=useNavigate()
      let [IsLoggedIn,setIsLoggedIn]=useState(null);
-    let [Role,SetRole]=useState(null);    
+    let [Role,SetRole]=useState(null);
  //her we display the whole product
  useEffect(()=>{
     let checkLogin=async()=>{
@@ -32,7 +32,7 @@ let Navigate=useNavigate()
                 setIsLoggedIn(true);
                 SetRole(response.data.Role)  //store role
   console.log(response.data.Role);
-                      
+
             }
             else{
                 setIsLoggedIn(false)
@@ -43,7 +43,7 @@ let Navigate=useNavigate()
         catch(error){
             console.log("error",error)
         }}
-    
+
     let DisplayProduct=async()=>{
         try{
         let response=await axios.get("http://localhost:5555/UploadItem/DisplayProduct");
@@ -52,7 +52,7 @@ let Navigate=useNavigate()
             //.Product is come forma a backend because in this object the real product is present
             SetProduct(response.data.Product)
         }
-    }    
+    }
     catch(error){
         console.log("error",error)
     }
@@ -89,42 +89,42 @@ checkLogin()
 
 {/* //this is for show the update form */}
 {ShowForm && <UpdateForm Close={() =>
- SetShowForm(false)} 
+ SetShowForm(false)}
  ProductId={SelectedProductId} //her we pass the id of the product to update
  Product={SelectedProduct} //here we pass the full product for prefiilling the updated form
  />}
 
- <Searching    SetProduct={SetProduct}  />  
+ <Searching    SetProduct={SetProduct}  />
  <div className="min-h-screen bg-gray-100 px-6 py-6   overflow-x-hidden">
 
  <section className="flex justify-end gap-4 ">
 
 
-            {Role!=="Admin" && 
-            <LoginButton IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} /> 
+            {Role!=="Admin" &&
+            <LoginButton IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             }
 
-            <LogOut  IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} Role={Role} SetRole={SetRole}/>  
+            <LogOut  IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} Role={Role} SetRole={SetRole}/>
 
-         </section> 
-             <section className="grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5 overflow-hidden    ">
-                { 
+         </section>
+             <section className="grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-6 mt-6 overflow-hidden    ">
+                {
                     Product.map((product,index)=>(
-                        <section className="  bg-white rounded-xl shadow-xl hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2   "key={index} style={{maxWidth:"220px"}}>
+                         <section className={`hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2 ${Role==="Admin"?"rounded-xl shadow-xl bg-white h-full":""} `} key={index} style={{maxWidth:"220px"}}> 
+
                         {product.images&&(
-                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl"  />)}
+                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-full"  />)}
 
-                            <h2 className="pl-5  text-lg  font-semibold ">
-                                     RS {product.price } 
-                            </h2>
-
+                            
                             <h2 className="text-xl font-bold text-gray-800 pl-5 truncate ">
                                         {product.title}
                         </h2>
-                        {/* <p className="text-xl font-semibold text-gray-800  truncate pl-5">
-                                    {/* {product.description} 
-                        </p> */}
-                        {Role==="User"&&
+
+                            <h2 className="pl-5  text-lg  font-semibold ">
+                                     RS {product.price }
+                            </h2>
+
+                        {Role==="User"||Role===null &&
                          <Link to={`/More/${product._id}`} className="pl-5 text-blue-400">More</Link>
                         }
                         {Role==="Admin"&&
@@ -133,21 +133,21 @@ checkLogin()
                         {
                             Role==="Admin"&& (
                                 <div className="grid grid-cols-2 justify-items-center">
-                            
+
                             <Update onClick={()=>{
                                 SetShowForm(true);
                                 SetSelectedProductId(product._id);    //for product id to find and updated
                                 SetSelectedProduct(product)            //for sending the whole product for prefilling the update
                             }
-                            
-                            
+
+
 
                             }/>
                             <Delete ProductId={product._id}/> {/*  for delete product by id  */}
                             </div>
                             )
-                        }                 
-                      
+                        }
+
 
                         </section>
                     ))
@@ -155,7 +155,7 @@ checkLogin()
 
             </section>
 
-        </div> 
+        </div>
 
       </div>
 

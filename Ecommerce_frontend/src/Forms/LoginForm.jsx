@@ -53,7 +53,7 @@ catch(error){
     return(
 
         <div >
-            <form className="h-72 w-56 pt-3 sm:w-60 bg-green-800 rounded-lg border-2 border-black  fixed top-30  right-0 mr-4 mt-4">
+            <form className="h-72 w-56 pt-3 sm:w-60 bg-green-800 rounded-lg border-2 border-black  fixed top-30  right-0 mr-4 mt-4 z-50">
 
                 {errors.Gmail&&<p className="text-red-400">{errors.Gmail.message}</p>}
                 <input type="Gmail"  {...register("Gmail",
