@@ -9,6 +9,7 @@ let DeleteProduct=require("./Features/CRUD_Operation_Prouduct/Delete_Product");
 //this is fro a function 
 let ProductPost=require("./Features/CRUD_Operation_Prouduct/ProductPost");
 
+
 let express=require("express");
 const DisplayProductDetail = require("./DisplayProductDetail"); 
 const UpdateProduct = require("./Features/CRUD_Operation_Prouduct/UpdateProduct");

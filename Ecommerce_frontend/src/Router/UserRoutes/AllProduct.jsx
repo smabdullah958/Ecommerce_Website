@@ -85,7 +85,12 @@ checkLogin()
         );}
 
     return(
+
+        
+
 <div>
+
+
 
 {/* //this is for show the update form */}
 {ShowForm && <UpdateForm Close={() =>
@@ -93,9 +98,10 @@ checkLogin()
  ProductId={SelectedProductId} //her we pass the id of the product to update
  Product={SelectedProduct} //here we pass the full product for prefiilling the updated form
  />}
-
- <Searching    SetProduct={SetProduct}  />
+{/* here role is passed for searchin with the help ofa  ProductId */}
+ <Searching    SetProduct={SetProduct} Role={Role}  />
  <div className="min-h-screen bg-gray-100 px-6 py-6   overflow-x-hidden">
+
 
  <section className="flex justify-end gap-4 ">
 
@@ -106,8 +112,25 @@ checkLogin()
 
             <LogOut  IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} Role={Role} SetRole={SetRole}/>
 
+
+
+
+
          </section>
-             <section className="grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-6 mt-6 overflow-hidden    ">
+
+<div>
+    {/* if searching is fail */}
+{
+ Product.length === 0 && (
+    <div className="text-center text-gray-600 text-xl my-10">
+      Product not found
+    </div>
+  )
+}
+
+</div>
+
+             <section className="grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-y-6  mt-6 overflow-hidden    max-w-[100%] max-h-[auto]">
                 {
                     Product.map((product,index)=>(
                          <section className={`hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2 ${Role==="Admin"?"rounded-xl shadow-xl bg-white h-full":""} `} key={index} style={{maxWidth:"220px"}}> 
@@ -124,7 +147,7 @@ checkLogin()
                                      RS {product.price }
                             </h2>
 
-                        {Role==="User"||Role===null &&
+                        {(Role==="User"||Role===null) &&
                          <Link to={`/More/${product._id}`} className="pl-5 text-blue-400">More</Link>
                         }
                         {Role==="Admin"&&

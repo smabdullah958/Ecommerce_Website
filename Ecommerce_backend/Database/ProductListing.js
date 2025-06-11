@@ -1,5 +1,11 @@
-require("dotenv").config({path:"../../.env"});
-console.log(process.env.Mongo_URL)
+// require("dotenv").config({path:"../.env"});
+// console.log("product listing url",process.env.Mongo_URL)
+const path = require("path");
+require("dotenv").config({
+  path: path.resolve(__dirname, "../.env")
+});
+console.log("product listing url", process.env.Mongo_URL);
+
 let mongoose =require("mongoose");
 mongoose.connect(process.env.Mongo_URL);
 let Sch=new mongoose.Schema({
@@ -36,6 +42,12 @@ let Sch=new mongoose.Schema({
         type:[String],
         required:true,
         enum:["simple","design"]
+    },
+    ProductId:{
+        type:String,
+        required:true,
+        unique:true,
+        match:[/^[a-zA-Z0-9]{8}$/] // Alphanumeric string of length 8 to 12
     }
 });
 let Model=mongoose.model("Products",Sch)

@@ -1,23 +1,32 @@
 let PlaceOrderDatabase = require("../../../Database/Place_Order.js");
-function generateOrderID() {
-    return Math.floor(Math.random() * 1000000); // Generates a random 6-digit number
-}
-
+let ProductDatabase = require("../../../Database/ProductListing.js");
 
 let PlaceOrder=async(req,res)=>{
-try{
-    let UserID=req.user._id; //get user id if user is a logged in 
-    let {size,quantity}=req.body;
-    if(!size||!quantity){
-        res.status(400).json({message:"plaase enter size and quantity"})
+try{ 
+     let UserID=req.user._id; //get user id if user is a logged in and it is come from a middleware 
+    let {Size,Quantity,ProductID}=req.body;
+    if(!Size||!Quantity||!ProductID){ //here product id is used to  identify product is order
+    return    res.status(400).json({message:"plaase enter size and quantity"})
     }
-    let result=new PlaceOrderDatabase({
-        OrderID:generateOrderID(), //for generate a random order id
-        size,
-        quantity,
-        Gmail:UserID
-    });
 
+    //fetch product price
+    let product=await ProductDatabase.findById(ProductID).select("price");
+    if(!product){
+        return res.status(404).json({message:"Product not found"});
+    }
+    let TotalPrice = product.price * Quantity; //calculate total price
+    let result=new PlaceOrderDatabase({
+        Size,
+        Quantity,
+        UserID:UserID, //this is used to identify user 
+        OrderProduct:ProductID, //this is used to identify product that which product is order
+        TotalPrice //this is used to store total price of the order
+    });
+result.OrderID=result._id.toString().substring(0,8); //generate short string to identify the order  or track the order
+console.log("order id is :",result.OrderID);
+console.log("user id is :",result.UserID);
+console.log("product id is :",result.OrderProduct);
+console.log("total price : ",result.TotalPrice);
     let data=await result.save();
     console.log("data is store",data)
     res.status(200).json({data});

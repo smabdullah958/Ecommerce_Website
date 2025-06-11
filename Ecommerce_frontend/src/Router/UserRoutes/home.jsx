@@ -4,7 +4,7 @@ function Home(){
     return(
 <div>
 
-<AllProduct/>
+<AllProduct />
 
         </div> 
                 )

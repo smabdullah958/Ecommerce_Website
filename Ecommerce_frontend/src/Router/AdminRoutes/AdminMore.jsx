@@ -1,7 +1,7 @@
-import More from "../UserRoutes/UserMore"
+import UserMore from "../UserRoutes/UserMore";
 function AdminMore(){
     return (
-        <More/>
+        <UserMore/>
     )
 }
 export default AdminMore;

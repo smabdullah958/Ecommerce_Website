@@ -1,5 +1,5 @@
 let {validationResult}=require("express-validator");
-let ProductDatabase=require("../../../../Database/ProductListing.js")
+let ProductDatabase=require("../../../../Database/ProductListing")
 
 
 let ProductPost=async (req,res)=>{
@@ -22,10 +22,13 @@ console.log("no erorr");
         price,
         stock,
         sizes,
-        category,
+        category
     });
     console.log("data is correct",req.file);
+    //generate short string to identify the product
+    data.ProductId=data._id.toString().substring(0,8);
     let result=await data.save();
+    console.log("product id is = ",result.ProductId);
     res.status(200).json({message:"correct api",result});
     console.log(data)
 } 

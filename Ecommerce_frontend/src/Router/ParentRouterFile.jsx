@@ -13,9 +13,9 @@ import More from "./UserRoutes/UserMore.jsx";
 //this is a Admin Router
 import AdminRoutes_Link from "./AdminRoutes/AdminRoute_Link.jsx";
 import AdminHome  from "./AdminRoutes/AdminHome.jsx";
-import Order_Mangement from "./AdminRoutes/Order_Management.jsx";
 import PostItem from "./AdminRoutes/PostItem.jsx"
 import AdminMore from "./AdminRoutes/AdminMore.jsx";
+import DisplayPlaceOrder from "./UserRoutes/Features/Place_Orders/DisplayPlaceOrder.jsx";
 
 function App(){
     return (
@@ -36,7 +36,7 @@ function App(){
                 <Route path="/AdminMore/:id" element={<AdminMore/>}/>
                <Route path="/Home" element={<AdminHome/>}/>
                <Route path="/Post" element={<PostItem/>}/>
-               <Route path="/Order_Management" element={<Order_Mangement/>}/>
+               <Route path="/Order_Management" element={<DisplayPlaceOrder/>}/>
                <Route path="/" element={<Home />}/>
                </Route>
             </Routes>

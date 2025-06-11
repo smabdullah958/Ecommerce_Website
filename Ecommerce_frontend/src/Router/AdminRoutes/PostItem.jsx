@@ -58,6 +58,7 @@ function PostItem(){
 
   formData.append("images", data.images[0]); // 👈 this must match multer field name
 console.log("form data = " ,data)
+
   try {
     const res = await axios.post("http://localhost:5555/UploadItem/PostItem", formData, {
       headers: {

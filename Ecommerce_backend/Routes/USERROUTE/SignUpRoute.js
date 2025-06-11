@@ -54,7 +54,10 @@ let SignUpForm=async(req,res)=>{
     console.log("here hash is nto only sfsakjl store in a database")
     let result=await data.save();
     console.log("here data is store in a database")
-    let Token=JWT.sign({Gmail},process.env.JWT_Password,{expiresIn:process.env.JWT_Expire});
+    let Token=JWT.sign({
+        Gmail,_id:result._id,Role:Role},
+        process.env.JWT_Password,
+        {expiresIn:process.env.JWT_Expire});
     
     res.cookie("Token",Token,{
         httpOnly:true,
