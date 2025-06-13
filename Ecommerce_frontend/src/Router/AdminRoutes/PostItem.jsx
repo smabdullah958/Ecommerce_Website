@@ -87,24 +87,24 @@ console.log("form data = " ,data)
                             <div>
                         {errors.title &&<p className="text-red-500">{errors.title.message}</p>}
 
-                    <input {...register("title")} placeholder="Title" className=" lg:w-72 w-52  h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md"/>
+                    <input {...register("title")} placeholder="Title" className=" lg:w-72 w-[70vw]  h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md"/>
 </div>
  <div>                       
                         {errors.price&&<p className="text-red-500">{errors.price.message}</p>}
-                    <input {...register("price")} placeholder="price" className=" lg:w-72 w-52  h-10 mb-2 sm:w-60 
+                    <input {...register("price")} placeholder="price" className=" lg:w-72 w-[70vw]  h-10 mb-2 sm:w-60 
                     mt-3 sm:mt-0 rounded-md"/>
 </div>
 
 <div>
                     {errors.stock&&<p className="text-red-500">{errors.stock.message}</p>}
-                    <input {...register("stock")} placeholder="Stock " className=" lg:w-72 w-52  h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md"/>
+                    <input {...register("stock")} placeholder="Stock " className=" lg:w-72 w-[70vw]  h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md"/>
 
 </div>
 
         
                               <div className="mt-5 sm:mt-0">
                         {errors.images&&<p className="text-red-500">{errors.images.message}</p>}
-                   <input type="file"  {...register("images")} className="lg:w-72 w-52 h-14 mb-2 sm:w-60 sm:mt-0 rounded-md ml-3 file:mr-4 file:py-2 file:px-4
+                   <input type="file"  {...register("images")} className="lg:w-72 w-[70vw] border-2 border-white bg-white   h-14 mb-2 sm:w-60 sm:mt-0 rounded-lg ml-3 file:mr-4 file:py-2 file:px-4
                file:rounded-full file:border-0 file:text-sm file:font-semibold
                file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 "/>
                         </div>
@@ -112,7 +112,8 @@ console.log("form data = " ,data)
                         
 <div className="sm:col-span-2 mb-2 pb-0">
                         {errors.description&&<p className="text-red-500">{errors.description.message}</p>}
-                    <textarea {...register("description")} placeholder="description here" className=" lg:w-96 w-52   mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md  h-44 "/>
+                    <textarea {...register("description")} placeholder="description here" className=" lg:w-96 
+                    w-[70vw]   mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md  h-44 "/>
  </div>
                          
                              <div className="ml-6 w-64">

@@ -1,4 +1,4 @@
-let mongoose = require("mongoose");
+// let mongoose = require("mongoose");
 let PlaceOrderDatabase = require("../../../Database/Place_Order.js");
 
 async function Search_Order(req,res){
@@ -21,7 +21,7 @@ async function Search_Order(req,res){
     
         let result=await PlaceOrderDatabase.find({
             $or:SearchCondition
-        }).populate("UserID").populate("OrderProduct"); //populate user id and product id to get the user and product details
+     }).populate("UserID").populate("ProductID"); //populate user id and product id to get the user and product details
         if(!result){ //if result is not found then return error
             return res.status(404).json({message:"Order not found"});
         }

@@ -18,18 +18,20 @@ try{
     let result=new PlaceOrderDatabase({
         Size,
         Quantity,
-        UserID:UserID, //this is used to identify user 
-        OrderProduct:ProductID, //this is used to identify product that which product is order
-        TotalPrice //this is used to store total price of the order
+        UserID, //this is used to identify user 
+        ProductID:ProductID, //this is used to identify product that which product is order
+        TotalPrice, //this is used to store total price of the order
+        PayementStatus:"Pending"
     });
 result.OrderID=result._id.toString().substring(0,8); //generate short string to identify the order  or track the order
 console.log("order id is :",result.OrderID);
 console.log("user id is :",result.UserID);
-console.log("product id is :",result.OrderProduct);
 console.log("total price : ",result.TotalPrice);
     let data=await result.save();
     console.log("data is store",data)
     res.status(200).json({data});
+    console.log("so the PayementStatus is :",PayementStatus);
+console.log("product id is :",result.ProductID);
 }
 catch(error){
     console.log("error is : " , error);

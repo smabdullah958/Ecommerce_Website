@@ -17,8 +17,7 @@ let SignUpForm=async(req,res)=>{
          }
         console.log("here authenidiacation si stater")
 
-        let {Password,LastName,FirstName,Gmail,PhoneNo,Role,Address}=req.body;
-
+        let {Password,Name,City,Gmail,PhoneNo,Role,Address}=req.body;
                 if(!Role){
             Role="User";
         }
@@ -42,8 +41,8 @@ let SignUpForm=async(req,res)=>{
 
 
     let data=new mongoose({
-        FirstName,
-        LastName,
+        Name,
+        City,
         PhoneNo,
         Gmail,
         Password:hash,
@@ -52,6 +51,9 @@ let SignUpForm=async(req,res)=>{
     });
     console.log("Password is : ", Password)
     console.log("here hash is nto only sfsakjl store in a database")
+    data.PersonId=data._id.toString().substring(0,8);
+        console.log("so the person id is ",data.PersonId);
+
     let result=await data.save();
     console.log("here data is store in a database")
     let Token=JWT.sign({

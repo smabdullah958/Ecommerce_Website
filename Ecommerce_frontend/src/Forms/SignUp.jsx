@@ -8,8 +8,8 @@ import * as yup from 'yup';
 import {useForm} from 'react-hook-form';
 
 const SignUpValidaton=yup.object().shape({
-FirstName:yup.string().max(50),
-LastName:yup.string().required("name is required").min(3,"minimum 3 character allowed").max(50,"minimum 50 character allowed"),
+Name:yup.string().required("name is required").max(50,"maximum 50 character allowed"),
+City:yup.string().required("city is required").min(3,"minimum 3 character allowed").max(50,"maximum 50 character allowed"),
 Gmail:yup.string().required("Email is required").email("invalid Email").matches(/^[a-zA-Z0-9.+_]+@gmail\.com$/,"@gmail.com must be present"),
 Password:yup.string().required("password is required").min(5,"minimum 5 characer is allowed"),
 PhoneNo:yup.string().required().matches(/^[0-9]{10}$/,"10 digit is allowed"),
@@ -62,17 +62,11 @@ catch(error){
         <form  className='grid grid-cols-1  sm:grid-cols-2  bg-slate-400 h=[100vh] sm:h-96 w-[100vw] sm:w-[80vw] lg:w-[70vw] xl:w-[50vw]  content-center justify-items-center  gap-0 '>
 
 <div>
-{errors.FirstName && <p className='text-red-400'>{errors.FirstName.message}</p>}
+{errors.Name && <p className='text-red-400'>{errors.Name.message}</p>}
 
-        <input {...register("FirstName") } placeholder="FirstName" className=" lg:w-72 w-52  h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md"/>
+        <input {...register("Name") } placeholder="User Name" className=" lg:w-72 w-52  h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md"/>
 </div>
 
-<div>
-{errors.LastName && <p className='text-red-400'>{errors.LastName.message}</p>}
-
-        <input {...register("LastName")} placeholder='LastName' className='rounded-md lg:w-72 w-52  h-10 mb-2 sm:w-60'/>
-
-     </div>
      <div>   
 {errors.Gmail && <p className='text-red-400'>{errors.Gmail.message}</p>}
 
@@ -91,6 +85,13 @@ catch(error){
         <input {...register("PhoneNo")} placeholder='Contact Number' className='rounded-md h-10 lg:w-72 w-52  sm:w-60 mb-2 sm:col-span-2'/>
 </div>
 
+
+<div>
+{errors.City && <p className='text-red-400'>{errors.City.message}</p>}
+
+        <input {...register("City")} placeholder='User City' className='rounded-md lg:w-72 w-52  h-10 mb-2 sm:w-60'/>
+
+     </div>
 
 <div>
     {errors.Address&& <p className='text-red-400'>{errors.Address.message}</p>}

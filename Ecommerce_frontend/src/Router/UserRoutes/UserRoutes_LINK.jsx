@@ -10,7 +10,7 @@ let [show,hide]=useState(false);
         {/* this is for laptop or desktop */}
     <nav className="hidden  sm:h-12 sm:w-[100vw] sm:bg-slate-500 sm:flex   sm:items-center sm:gap-2 sm:justify-center sm:mb-4 sm:text-lg">
         <Link to="/" onClick={()=>hide(false)} className="hover:text-xl hover:scale-110 duration-500 transition-all pr-3 hover:font-semibold"> home </Link>
-        <Link to="/display" onClick={()=>hide(false)} className="hover:text-xl hover:scale-110 duration-500 transition-all pr-3 hover:font-semibold">display</Link>
+        <Link to="/Display_Add_To_Card" onClick={()=>hide(false)} className="hover:text-xl hover:scale-110 duration-500 transition-all pr-3 hover:font-semibold">Add to card</Link>
         <Link to="/ContactUs" onClick={()=>hide(false)} className="hover:text-xl hover:scale-110  duration-500 transition pr-4 hover:font-semibold ">Contact</Link>
     </nav>
 
@@ -38,7 +38,7 @@ let [show,hide]=useState(false);
         <nav className=" sm:hidden z-0 h-[40vw] w-[80vw] bg-gray-300 p-3 grid text-center  grid-cols-1 mb-5 ml-5 fixed left-0  ">
        
         <Link to="/" className="hover:text-xl hover:scale-110 duration-500 transition-all pr-3 hover:font-semibold"> home </Link>
-        <Link to="/display" className="hover:text-xl hover:scale-110 duration-500 transition-all pr-3 hover:font-semibold">display</Link>
+        <Link to="/Display_Add_To_Card" className="hover:text-xl hover:scale-110 duration-500 transition-all pr-3 hover:font-semibold">Add to card</Link>
         <Link to="/ContactUs" className="hover:text-xl hover:scale-110  duration-500 transition pr-4 hover:font-semibold">Contact</Link>
 
     </nav>

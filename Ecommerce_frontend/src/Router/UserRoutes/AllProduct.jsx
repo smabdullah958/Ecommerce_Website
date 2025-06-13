@@ -133,12 +133,13 @@ checkLogin()
              <section className="grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-y-6  mt-6 overflow-hidden    max-w-[100%] max-h-[auto]">
                 {
                     Product.map((product,index)=>(
-                         <section className={`hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2 ${Role==="Admin"?"rounded-xl shadow-xl bg-white h-full":""} `} key={index} style={{maxWidth:"220px"}}> 
+                         <section className={`hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2 ${Role==="Admin"?"rounded-xl shadow-xl bg-white h-full":""} `} key={index} 
+                         style={{maxWidth:"220px"}}> 
 
                         {product.images&&(
-                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-full"  />)}
+                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="h-48 w-[100vw]  "  />)}
 
-                            
+                            <div className="bg-white">
                             <h2 className="text-xl font-bold text-gray-800 pl-5 truncate ">
                                         {product.title}
                         </h2>
@@ -170,7 +171,7 @@ checkLogin()
                             </div>
                             )
                         }
-
+</div>
 
                         </section>
                     ))

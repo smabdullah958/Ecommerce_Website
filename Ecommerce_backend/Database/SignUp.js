@@ -4,12 +4,12 @@ const mongoose=require("mongoose");
 mongoose.connect(process.env.Mongo_URL);
 
 let schema=new mongoose.Schema({
-    FirstName:{
+    Name:{
         type:String,
         minlength:3,
         maxlength:50
     },
-    LastName:{
+    City:{
         type:String,
         required:true,
         minlength:3,
@@ -41,6 +41,12 @@ let schema=new mongoose.Schema({
     Address:{
         type:String,
         required:true
+    },
+    PersonId:{
+        type:String,
+        required:true,
+        unique:true,   
+        match:[/^[a-zA-Z0-9]{8}$/] // Alphanumeric string of length 8 to 12
     }
 });
 

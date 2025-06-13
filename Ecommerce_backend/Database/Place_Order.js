@@ -24,13 +24,27 @@ Size:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"SignUps"
     },
-    OrderProduct:{  //this is used to identify the product that which product is order
+    ProductID:{  //this is used to identify the product that which product is order
         type:mongoose.Schema.Types.ObjectId,
         ref:"Products"
     },
     TotalPrice:{
         type:Number,
         required:true
+    },
+    deliveryStatus:{
+        type:String,
+        enum:["Pending","Packed","Shipped","Delivered"],
+        default:"Pending" //default status is packed
+    },
+    TcsId:{
+        type:String,
+        default:null
+    },
+    PayementStatus:{
+        type:String,
+        default:"Pending",
+        enum:["Pending","Recieve"] 
     }
 },{
         timestamps:true //this is used to store the created at and updated at time

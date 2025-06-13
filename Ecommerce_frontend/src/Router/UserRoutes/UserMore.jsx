@@ -3,13 +3,15 @@ import axios from "axios";
 import { useState,useEffect } from "react";
 
 //for placeing order
-import PlaceOrder from "./Features/Place_Orders/Place_Order";
+// import PlaceOrder from "./Features/Place_Orders/Place_Order";
+//for add a product ina  card
+import Add_To_Card from "./Features/Place_Orders/Add_To_Card/Add_To_Card";
 
 function UserMore(){
     let {id}=useParams();
     let [product,setproduct]=useState(null);
     let [Loading,SetLoading]=useState(true);
-
+//to check login 
      let [IsLoggedIn,setIsLoggedIn]=useState(null);
     let [Role,SetRole]=useState(null);
 
@@ -70,12 +72,12 @@ function UserMore(){
     }        
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2   ">
+        <div className="grid grid-cols-1 lg:grid-cols-2  pb-5 ">
                                     {product.images&&(
-                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="   h-[70vh] sm:w-[70vw] lg:h-[85vh] w-[90vw]   rounded-t-xl   sm:ml-5 ml-3"  />)}
+                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className=" size-80   sm:w-[80vw] lg:h-[85vh] sm:h-[60vh]    rounded-t-xl   sm:ml-5 ml-3"  />)}
                             
                             <div className="grid pl-10 ">
-                        <h2 className="text-2xl sm:text-4xl  font-bold text-gray-800 ml-5 mt-5 lg:mt-0  lg:mb-0 overflow-y-auto h-20 sm:max-w-[500px] max-w-[300px] overflow-x-hidden">
+                        <h2 className="text-2xl sm:text-4xl  font-bold text-gray-800 ml-5 mt-5 lg:mt-0  lg:mb-0   sm:max-w-[500px] max-w-[300px] overflow-hidden  ">
                                         {product.title}
                         </h2>
                         
@@ -84,10 +86,17 @@ function UserMore(){
                             </h2>
 
 
-                                            {  (Role==="User"||Role===null)?
+                                            {/* {  (Role==="User"||Role===null)?
                                             <PlaceOrder IsLoggedIn={IsLoggedIn} ProductId={product._id}/>:null
-                                            }                        
-                                        
+                                            }                         */}
+
+                                                {/* isLoggedIn is passed to check user is log in or not and product id is used that on which we click and alos pass the id  */}
+
+                                                {(Role==="User"||Role===null)?
+                                                <Add_To_Card IsLoggedIn={IsLoggedIn} ProductId={product._id}/>:null
+                                                }
+
+
 
                         <p className="text-xl font-semibold   break-words pl-5 sm:max-w-[500px] max-w-[300px] overflow-y-auto h-20 ">
                    

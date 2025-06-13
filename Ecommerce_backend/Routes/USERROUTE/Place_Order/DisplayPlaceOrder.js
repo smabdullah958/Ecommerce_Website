@@ -4,9 +4,9 @@ let  DisplayPlaceOrder=async(req,res)=>{
 
     try{
     let result=await PlaceOrderDatabase.find()
-.select("OrderID Size Quantity createdAt ") //select only these fields
-.populate("UserID","LastName Gmail PhoneNo Address") //fetch only lastname gmail,phoneno and address
-.populate("OrderProduct","title price ProductId") //fetch only product name and price
+.select("OrderID Size Quantity createdAt TotalPrice deliveryStatus TcsId PayementStatus ") //select only these fields
+.populate("UserID","Name City Gmail PhoneNo Address PersonId") //fetch only lastname gmail,phoneno and address
+.populate("ProductID","title price ProductId") //fetch only product name and price
 
 console.log("result is :",result);
     if(result.length===0){

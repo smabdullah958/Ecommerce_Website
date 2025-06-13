@@ -133,7 +133,7 @@ console.log("form data = " ,formData)
 
                     <h1 className='mb-4   text-3xl font-bold sm:ml-20 ml-10   mt-2'>Update Item
                     </h1>
-                    <form className="grid  grid-cols-2 ml-3">
+                    <form className="grid  grid-cols-2  ml-3">
 
                                           <div>
                         {errors.title &&<p className="text-red-500">{errors.title.message}</p>}
