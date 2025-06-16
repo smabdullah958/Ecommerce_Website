@@ -19,4 +19,10 @@ App.use("/api",UserParentRoute)
 let AdminRoute=require("./Routes/AdminRoutes/AdminParentRoute")
 //this is for a admin
 App.use("/UploadItem",AdminRoute)
+App.get("/",function(req,res){
+    res.send({
+        activeStatus:true,
+        error:false
+    })
+})
 App.listen(process.env.Port)
