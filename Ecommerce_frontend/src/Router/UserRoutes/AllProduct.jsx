@@ -42,7 +42,7 @@ let Navigate=useNavigate()
     let checkLogin=async()=>{
             try{
 
-            let response =await axios.get("http://localhost:5555/api/checkLogin", { withCredentials: true });
+            let response =await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/checkLogin", { withCredentials: true });
             if(response.data.isLoggedIn===true){
                 setIsLoggedIn(true);
                 SetRole(response.data.Role)  //store role
@@ -61,7 +61,7 @@ let Navigate=useNavigate()
 
     let DisplayProduct=async()=>{
         try{
-        let response=await axios.get("http://localhost:5555/UploadItem/DisplayProduct");
+        let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/UploadItem/DisplayProduct");
         console.log(response.data);
         if(response.data){
             //.Product is come forma a backend because in this object the real product is present
@@ -154,7 +154,7 @@ checkLogin()
                          style={{maxWidth:"220px"}}> 
 
                         {product.images&&(
-                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product?.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl  "  />)}
+                            <img src={`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/UploadPost/${product?.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl  "  />)}
 
                             <div className="bg-white">
                             <h2 className="text-xl font-bold text-gray-800 pl-5 truncate ">

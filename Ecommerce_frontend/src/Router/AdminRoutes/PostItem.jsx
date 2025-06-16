@@ -61,7 +61,7 @@ function PostItem(){
 console.log("form data = " ,data)
 
   try {
-    const res = await axios.post("http://localhost:5555/UploadItem/PostItem", formData, {
+    const res = await axios.post("https://ecommerce-website-backend-smoky.vercel.app/UploadItem/PostItem", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

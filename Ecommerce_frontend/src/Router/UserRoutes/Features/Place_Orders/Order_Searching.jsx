@@ -10,7 +10,7 @@ useEffect(() => {
     if (!searchText) return; // Don't call if input is empty
 async function SearchOrders(){
     try{
-        let response = await axios.get("http://localhost:5555/api/Search_Order", {
+        let response = await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/Search_Order", {
             params: {
                 searchText: searchText
             }

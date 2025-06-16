@@ -87,7 +87,7 @@ console.log("form data = " ,formData)
        try{
 
           
-           let response= await axios.put(`http://localhost:5555/UploadItem/UpdateProduct/${ProductId}`, formData,
+           let response= await axios.put(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/UpdateProduct/${ProductId}`, formData,
             {
                headers:{
                  "Content-Type":"multipart/form-data"

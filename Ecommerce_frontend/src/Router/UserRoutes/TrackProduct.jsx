@@ -7,7 +7,7 @@ let [Search,SetSearch]=useState(null)
 let [Result,SetResult]=useState(null)
 let Track=async()=>{
     try{
-        let response=await axios.get(`http://localhost:5555/api/trackProduct/${Search}`)
+        let response=await axios.get(`https://ecommerce-website-backend-smoky.vercel.app/api/trackProduct/${Search}`)
             SetResult(response.data.Orderid) //Orderid is come froma a backend
             console.log("so the track is : ",response.data.Orderid)
             

@@ -20,7 +20,7 @@ useEffect(()=>{
 
    async function UpdateStatusAndId(){
 try{
-    let response= await axios.put(`http://localhost:5555/api/UpdateDeliveryStatus/${Order.OrderID}`,{
+    let response= await axios.put(`https://ecommerce-website-backend-smoky.vercel.app/api/UpdateDeliveryStatus/${Order.OrderID}`,{
       TcsId:UpdateStatus.TcsId,
       deliveryStatus:UpdateStatus.deliveryStatus  
     });

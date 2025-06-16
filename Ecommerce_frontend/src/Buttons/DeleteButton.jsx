@@ -4,7 +4,7 @@ import axios from "axios";
 function Delete({ProductId}){
     let DeleteProduct=async()=>{
         try{
-             let response=await axios.delete(`http://localhost:5555/UploadItem/DeleteProduct/${ProductId}`);
+             let response=await axios.delete(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/DeleteProduct/${ProductId}`);
 
             console.log("product deleted successfully :",response)
             toast.success("Product deleted")

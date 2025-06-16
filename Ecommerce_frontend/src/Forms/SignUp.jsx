@@ -35,7 +35,7 @@ let Navigate=useNavigate()
    async function POSTAPI(data){
     try{
         clearErrors() //it will clrear previous error
-    let response=await axios.post("http://localhost:5555/api/",data,{withCredentials:true});
+    let response=await axios.post("https://ecommerce-website-backend-smoky.vercel.app/api/",data,{withCredentials:true});
     
 console.log("data is postted",response)    
 toast.success("signup successfully")
