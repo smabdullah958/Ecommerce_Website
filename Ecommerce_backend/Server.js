@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({path:".env"});
 console.log(process.env.JWT_Password);
 console.log(process.env.JWT_Expire);
 let express=require("express");
