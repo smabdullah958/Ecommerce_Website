@@ -28,7 +28,7 @@ SearchOrders()
 },[searchText, SearchResult]); 
 return(
         <>
-            <input type="text" onChange={(e)=>setSearchText(e.target.value)} className="text-xs sm:text-sm lg:text-md p-[5px] w-[60vw] sm:mr-5 sm:w-96 rounded-xl border-2 border-black border-solid hover:bg-gray-200 transition duration-1000 mb-5" placeholder="Searching by Order ID " />
+            <input type="text" onChange={(e)=>setSearchText(e.target.value)} className="text-xs sm:text-sm lg:text-md p-[5px] w-[60vw] h-14 sm:h-10 sm:mr-5 sm:w-96 rounded-xl border-2 border-black border-solid hover:bg-gray-200 transition duration-1000 mb-5" placeholder="Searching by Order ID " />
         </>
     )
 }

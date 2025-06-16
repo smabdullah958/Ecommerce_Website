@@ -11,6 +11,12 @@ try{
         if(!Product){
             return res.status(404).json({"message":"product is not found"})
         }
+
+        //valid sizes are
+
+        if(!Product.sizes.includes(Size)){
+        return res.status(400).json({message:  `only ${Product.sizes.join(",")} is available`})
+        }
     
     let TotalPrice=Product.price*Quantity;    
         console.log("total price is a : ", TotalPrice)
@@ -31,7 +37,7 @@ let result=new  CardDatabase({
     TotalPrice
 })
 result.CardID=result._id.toString().substring(0,8);
-console.log("new card id is : ",result.CardID)
+// console.log("new card id is : ",result.CardID)
 let data=await result.save();
         console.log("total price is a : ", result.TotalPrice)
 res.status(200).json({message:"product is save ",data})

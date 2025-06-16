@@ -1,3 +1,4 @@
+import {toast,Toaster} from "sonner"
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -66,21 +67,24 @@ console.log("form data = " ,data)
       },
     });
     console.log("Upload Success:", res.data);
-    alert("file is upload")
-    navigate("/Home")
+    toast.success("Product post successfully!")
+    setTimeout(() => {
+    navigate("/Home")  
+    }, 2000);
+    
   } catch (error) {
     console.log("Upload Error:", error.response?.data?.error);
   }
 };
 
     return(
-        <div>
+        <div className=" min-h-screen bg-gradient-to-br from-gray-200 to-purple-100 p-6">
 
-                    <h1 className='mb-4 sm:mb-7 sm:m-10 sm:text-3xl font-bold sm:ml-20 ml-10  text-3xl mt-2'>Product Listing</h1>
-                    
+                    <h1 className=' sm:mb-7   font-bold sm:ml-20 ml-10  text-3xl mt-2'>Product Listing</h1>
+                    <Toaster richColors position="top-center"/>
                     <div className="flex justify-center  ">
                     
-                        <form  className='grid grid-cols-1  sm:grid-cols-2  bg-slate-400 h-full sm:h-full xl:h-[50vw] 2xl:h-[60vh] w-[100vw] sm:w-[80vw] lg:w-[70vw] xl:w-[50vw]     sm:content-center justify-items-center  gap-0 p-3 py-5   sm:mb-5 xl:ml-0 overflow-x-hidden'>
+                        <form  className='grid grid-cols-1      sm:content-center justify-items-center  gap-0   pb-5   sm:mb-5 xl:ml-0 overflow-x-hidden'>
 
 
 
@@ -104,7 +108,7 @@ console.log("form data = " ,data)
         
                               <div className="mt-5 sm:mt-0">
                         {errors.images&&<p className="text-red-500">{errors.images.message}</p>}
-                   <input type="file"  {...register("images")} className="lg:w-72 w-[70vw] border-2 border-white bg-white   h-14 mb-2 sm:w-60 sm:mt-0 rounded-lg ml-3 file:mr-4 file:py-2 file:px-4
+                   <input type="file"  {...register("images")} className="lg:w-72 w-[70vw] border-2 border-white bg-white    mb-2 sm:w-60 sm:mt-0 rounded-lg ml-3 file:mr-4 file:py-2 file:px-4
                file:rounded-full file:border-0 file:text-sm file:font-semibold
                file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 "/>
                         </div>
@@ -116,20 +120,20 @@ console.log("form data = " ,data)
                     w-[70vw]   mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md  h-44 "/>
  </div>
                          
-                             <div className="ml-6 w-64">
+                             <div className="ml-6 w-64 ">
 
                                         {errors.category&&<p className="text-red-500">{errors.category.message}</p>}
                         
-                                    <h1 className="text-xl font-bold mt-5 mb-1">Select Category</h1>
+                                    <h1 className="text-xl  font-bold mt-5 mb-1 ml-5">Select Category</h1>
 
-                        <label htmlFor="simple">simple</label>
+                        <label htmlFor="simple " className="ml-5">simple</label>
                     <input type="checkbox" {...register("category")} className="m-2" value="simple" id="simple" />
                     
                     <label htmlFor="design">design</label>
                     <input type="checkbox" {...register("category")} className="m-2" value="design" id="design" />
                    </div>
 
-                     <div className="ml-6 w-60 m-5 mb-1">
+                     <div className="ml-6 w-48 sm:w-60 m-5 mb-1 text-wrap">
                                 {errors.sizes&&<p className="text-red-500">{errors.sizes.message}</p>}
                             <h1 className="text-xl font-bold ">Select Size</h1>                           
 

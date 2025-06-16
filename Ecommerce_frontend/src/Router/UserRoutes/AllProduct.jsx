@@ -1,3 +1,6 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import UpdateForm from "../../Forms/UpdatePostForm";
 
 import {Link,useNavigate } from "react-router-dom";
@@ -22,6 +25,18 @@ let [SelectedProduct,SetSelectedProduct]=useState(null);
 let Navigate=useNavigate()
      let [IsLoggedIn,setIsLoggedIn]=useState(null);
     let [Role,SetRole]=useState(null);
+
+    
+    //for scrolling
+    useEffect(() => {
+  AOS.init({
+    duration: 800, // animation duration
+    once: true     // animate only once
+  });
+}, []);
+
+
+
  //her we display the whole product
  useEffect(()=>{
     let checkLogin=async()=>{
@@ -88,7 +103,7 @@ checkLogin()
 
         
 
-<div>
+<div >
 
 
 
@@ -133,11 +148,13 @@ checkLogin()
              <section className="grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-y-6  mt-6 overflow-hidden    max-w-[100%] max-h-[auto]">
                 {
                     Product.map((product,index)=>(
-                         <section className={`hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2 ${Role==="Admin"?"rounded-xl shadow-xl bg-white h-full":""} `} key={index} 
+                         <section
+                         data-aos="zoom-out" 
+                         className={`hover:scale-105 transition-transform duration-500 w-full  mx-auto my-3 pb-2 ${Role==="Admin"?"rounded-xl shadow-xl bg-white h-full":""} `} key={index} 
                          style={{maxWidth:"220px"}}> 
 
                         {product.images&&(
-                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}`} alt={product.name}  className="h-48 w-[100vw]  "  />)}
+                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product?.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl  "  />)}
 
                             <div className="bg-white">
                             <h2 className="text-xl font-bold text-gray-800 pl-5 truncate ">

@@ -9,7 +9,7 @@ import Home from "./UserRoutes/home.jsx";
 import SignUp from "../Forms/SignUp.jsx";
 import Display_Add_To_Card from "./UserRoutes/Features/Place_Orders/Add_To_Card/Display_Add_To_Card.jsx";
 import More from "./UserRoutes/UserMore.jsx";
-
+import TrackProduct from "./UserRoutes/TrackProduct.jsx";
 // footer
 import PrivacyPolicy from "./footer/privacyPolicy.jsx";
 import RefundPolicy from "./footer/RefundPolicy.jsx";
@@ -20,9 +20,10 @@ import ContactUs from "./footer/ContactUs.jsx";
 //this is a Admin Router
 import AdminRoutes_Link from "./AdminRoutes/AdminRoute_Link.jsx";
 import AdminHome  from "./AdminRoutes/AdminHome.jsx";
-import PostItem from "./AdminRoutes/PostItem.jsx"
+import PostItem from "./AdminRoutes/PostItem.jsx";
 import AdminMore from "./AdminRoutes/AdminMore.jsx";
 import DisplayPlaceOrder from "./UserRoutes/Features/Place_Orders/DisplayPlaceOrder.jsx";
+
 
 
 function App(){
@@ -38,10 +39,9 @@ function App(){
                 
                 <Route path="/" element={<Home />}  /> 
                 <Route path="/Display_Add_To_Card" element={<Display_Add_To_Card />} />
-               <Route path="/contactUs" element={<ContactUs />} />
                <Route path="/SignUp" element={<SignUp/>} />
                <Route path="/More/:id" element={<More/>}/>
-
+                <Route path="/TrackProduct" element={<TrackProduct/>}/>    
 
                {/* footer */}
                <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
@@ -60,6 +60,7 @@ function App(){
                <Route path="/Post" element={<PostItem/>}/>
                <Route path="/Order_Management" element={<DisplayPlaceOrder/>}/>
                <Route path="/" element={<Home />}/>
+
                </Route>
               <Route path="*" element={<PageNotFound/>}/>
 

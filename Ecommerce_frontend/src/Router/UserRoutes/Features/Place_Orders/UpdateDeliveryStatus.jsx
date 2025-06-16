@@ -1,3 +1,4 @@
+import { Toaster,toast } from "sonner";
 import axios from "axios";
 import { useEffect, useState  } from "react";
 
@@ -24,8 +25,11 @@ try{
       deliveryStatus:UpdateStatus.deliveryStatus  
     });
     if(response.status===200){
-        alert("status is update");
+        toast.success("status is update");
+       setTimeout(() => {
         onClose()
+       }, 1000);
+        
     }
 }
 catch(error){
@@ -34,12 +38,14 @@ catch(error){
 }
 return(
 <div className=" fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <Toaster richColors position="top-center"/>
+     
     <div className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-[80vh] h-[70vh] sm:h-[60vh] ">
         <div className="text-2xl font-bold grid sm:grid-cols-2 grid-cols-1  ">
         <p className="mb-4 sm:mb-0">Order:{Order.OrderID}</p>         
         Status:{Order.deliveryStatus}
         </div>
-            <br/>
+            
 
 <div className="flex flex-col items-center">
 
@@ -54,7 +60,7 @@ SetUpdateStatus({
 }} className=" lg:w-72 w-[60vw] h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md mr-3 bg-gray-200 hover:bg-gray-100 duration-500 transition" placeholder="update Tcs Id"/>
 <br/>
 <label>Delivery Status</label>
-<select value="UpdateStatus.deliveryStatus" className=" lg:w-72 w-[60vw] h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md mr-3 bg-gray-200 hover:bg-gray-100 duration-500 transition" onChange={(e)=>{
+<select value={UpdateStatus.deliveryStatus} className=" lg:w-72 w-[60vw] h-10 mb-2 sm:w-60 mt-3 sm:mt-0 rounded-md mr-3 bg-gray-200 hover:bg-gray-100 duration-500 transition" onChange={(e)=>{
 SetUpdateStatus({
 
     ...UpdateStatus,

@@ -1,4 +1,7 @@
-require("dotenv").config({path:"../.env"});
+// require("dotenv").config({path:"../.env"});
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+
 console.log(process.env.Mongo_URL)
 let mongoose =require("mongoose");
 mongoose.connect(process.env.Mongo_URL);
@@ -8,18 +11,18 @@ let Sch=new mongoose.Schema({
         required:true,
         unique:true,
 },
-Size:{
-    type:String,
-    required:true,
-    enum:["sm","md","lg","xl","2xl","3xl"],
-    default:"sm"
-},
-    Quantity:{
-        type:Number,    
-        required:true,
-        match:[/^[0-9]+$/],
-        min:1
-    },
+ Size:{
+     type:String,
+     required:true,
+     enum:["sm","md","lg","xl","2xl","3xl"],
+     default:"sm"
+ },
+     Quantity:{
+         type:Number,    
+         required:true,
+         match:[/^[0-9]+$/],
+         min:1
+     },
     UserID:{   //this is used to identify user that which user is order
         type:mongoose.Schema.Types.ObjectId,
         ref:"SignUps"
@@ -28,10 +31,10 @@ Size:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Products"
     },
-    TotalPrice:{
-        type:Number,
-        required:true
-    },
+     TotalPrice:{
+         type:Number,
+         required:true
+     },
     deliveryStatus:{
         type:String,
         enum:["Pending","Packed","Shipped","Delivered"],
@@ -41,11 +44,11 @@ Size:{
         type:String,
         default:null
     },
-    PayementStatus:{
-        type:String,
-        default:"Pending",
-        enum:["Pending","Recieve"] 
-    }
+    // PayementStatus:{
+    //     type:String,
+    //     default:"Pending",
+    //     enum:["Pending","Recieve"] 
+    // }
 },{
         timestamps:true //this is used to store the created at and updated at time
    }); 

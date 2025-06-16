@@ -1,3 +1,4 @@
+import { toast,Toaster} from "sonner"
 import axios from "axios";
 
 function Delete({ProductId}){
@@ -6,7 +7,7 @@ function Delete({ProductId}){
              let response=await axios.delete(`http://localhost:5555/UploadItem/DeleteProduct/${ProductId}`);
 
             console.log("product deleted successfully :",response)
-            alert("Product deleted successfully");
+            toast.success("Product deleted")
         }
         catch(error){
             console.error("Error deleting product:", error);

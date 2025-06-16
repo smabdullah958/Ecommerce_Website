@@ -1,3 +1,5 @@
+
+import {toast} from "sonner"
 //for navigation
 import { useNavigate } from "react-router-dom";
 
@@ -21,16 +23,21 @@ let Navigate=useNavigate();
         let response=await axios.post("http://localhost:5555/api/Login",data,{withCredentials:true});
         if(response.data){
         console.log(response.data);
-        alert("login is successfully");
+        toast.success("Login Successfully");
             setIsLoggedIn(true) //user is looged in 
             setlogin(false) //if user is login than automatically login form is close
+            setTimeout(() => {
+ 
+
             if(response.data.Role==="User"){
-            Navigate("/")
+                           Navigate("/")
+                          
         }
         if(response.data.Role==="Admin"){
             Navigate("/Home")
         }
-
+}, 1000);
+  
     }
     else{
     setIsLoggedIn(false)
@@ -45,7 +52,7 @@ catch(error){
             type:"manual",
             message:"email or password is not found"
         })
-        alert("incorrect email or password")
+        toast.error("wrong email")
     }
 }
 }
@@ -53,7 +60,7 @@ catch(error){
     return(
 
         <div >
-            <form className="h-72 w-56 pt-3 sm:w-60 bg-green-800 rounded-lg border-2 border-black  fixed top-30  right-0 mr-4 mt-4 z-50">
+            <form className="h-72 w-56 pt-3 sm:w-60 bg-zinc-200 rounded-lg  fixed top-30  right-0 mr-4 mt-4 z-50">
 
                 {errors.Gmail&&<p className="text-red-400">{errors.Gmail.message}</p>}
                 <input type="Gmail"  {...register("Gmail",
@@ -63,13 +70,13 @@ catch(error){
                     pattern:{value:/^[a-zA-Z0-9.+%-]+@gmail\.com$/i,
                     message:"@gmail.com must be present"}
                     })}
-                     placeholder="username" className="mt-3 sm:ml-3 ml-2 p-1 rounded-md " />
+                     placeholder="Gmail" className="mt-3 sm:ml-3 ml-2 p-1 rounded-md hover:bg-slate-300 duration-500 transition " />
 
 {errors.Password&&<p className="text-red-400">{errors.Password.message}</p>}
                 <input type="Password"
                 {...register("Password",{
                     required:{value:true,message:"must be fill"}
-                })} placeholder="password" className="mt-3 ml-2 sm:ml-3 p-1 rounded-md " />
+                })} placeholder="password" className="mt-3 ml-2 sm:ml-3 p-1 rounded-md hover:bg-slate-300 duration-500 transition " />
 
                 <button type="submit"  onClick={handleSubmit((data)=>LoginPostAPI(data))}  className={`border-2 border-black rounded-md p-1  bg-gray-200 hover:bg-gray-400 duration-500 tranition-all ml-3 shadow-black shadow-md `} >Login</button>
 

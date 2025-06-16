@@ -1,11 +1,17 @@
-
+import { Toaster,toast } from "sonner";
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router";
 
 function Add_To_Card({IsLoggedIn,ProductId}){
-
-    let Navigate=useNavigate()
+// here we can only seleect  the  sizes who are selected by a admin
+    let [Order,SetOrder]=useState({
+        Quantity:1,
+        Size:""
+    })
+//these are used for fetching the szies  froma admin 
+    let [Sizes, setAvailableSizes]=useState([])
+let Navigate=useNavigate()
      async function AddProduct(){
         try{
             
@@ -17,8 +23,11 @@ function Add_To_Card({IsLoggedIn,ProductId}){
         withCredentials:true
     })  
     console.log(response.data);
-    alert("product is added") 
+toast.success("Product added successfully!")
+setTimeout(()=>{
 Navigate("/Display_Add_To_Card")
+} ,1000)
+    
 }
         
         catch(error){
@@ -26,27 +35,46 @@ Navigate("/Display_Add_To_Card")
         }
     }
 
+    //fetch and select the size and also category for a user 
+
+    useEffect(()=>{
+        async function fetchDetail(){
+            try{
+                let response = await axios.get(`http://localhost:5555/UploadItem/ProductDetail/${ProductId}`);
+                let product=response.data.ProductDetail //ProductDetail is come from a backend
+               
+//these are used for fetching the sizes from a admin 
+                setAvailableSizes(product.sizes); 
+              
+                SetOrder(order=>({
+                        ...order,
+                        Size:product.sizes[0]||""
+                })
+            )
+            }
+            catch(error){
+                console.log('here i s sa error',error)
+            }
+        }
+        fetchDetail()
+    },[ProductId])
   
-    let [Order,SetOrder]=useState({
-        Quantity:1,
-        Size:"sm"
-    })
 
   
 return (
     <div>
+    <Toaster richColors position="top-right"/>
             <select className="p-2 mb-3 w-[50vw] bg-gray-200 hover:bg-gray-300 transition duration-1000 rounded-lg border-2 border-black border-solid lg:w-72   " value={Order.Size} onChange={(e)=>{
                 SetOrder({
                     ...Order,
                     Size:e.target.value
                 })
             }}>
-                <option value="sm">Sm</option>
-                <option value="md">md</option>
-                <option value="lg">Lg</option>
-                <option value="xl">xl</option>
-                <option value="2xl">2xl</option>
-                <option value="3xl">3xl</option>
+             
+                {Sizes.map((size, index) => (
+                    <option key={index} value={size}>{size.toUpperCase()}</option>
+                ))}
+
             </select>
             <br/>
             <button onClick={(e)=>{
@@ -61,10 +89,14 @@ return (
                             </span>
                        
             <button onClick={(e)=>{
+               if(Order.Quantity===0){
+                toast.error("Quantity can not be zero");
+               }
+               else{
                 SetOrder({
                 ...Order,
                 Quantity:Order.Quantity-1
-                })
+                })}
             }} className="border-2 border-black rounded-md p-1  bg-gray-200  duration-500 tranition-all shadow-gray-400 shadow-md hover:bg-gray-300   opacity-100 size-10 ml-2">-</button>
 <br/><br/>
 

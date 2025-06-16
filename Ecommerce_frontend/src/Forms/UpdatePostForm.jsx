@@ -1,3 +1,5 @@
+import {toast} from "sonner"
+
 // import { useParams } from "react-router-dom";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -59,26 +61,11 @@ let UpdateForm=({Close,ProductId,Product})=>{
       setValue("sizes",Product.sizes);
        setValue("category",Product.category)
 
-      //  //for review the image
-      //  if(Product.images){
-      //   SetImagePreview(`http://localhost:5555/UploadItem/UploadPost/${Product.images}`);
-
-      //  }
     }
   },[Product,setValue])
-    // let onchangeimage=(e)=>{
-    //   let file=e.target.files[0];
-    //   if(file){
-    //     SetImagePreview(URL.createObjectURL(file)); //show imae url
-    //   }
-    // };
 
 
     async function UpdateFunction(data){
-      
-        
-        //          const response = await axios.get(`http://localhost:5555/UploadItem/GetOneProduct/${roductId}`);
-        // let product=response.data.product
         
 let formData=new FormData();
         formData.append("title", data.title);
@@ -109,12 +96,17 @@ console.log("form data = " ,formData)
            );
 
            console.log(response.data)
-           alert("item is updated") ;
-           Close();
+           toast.success("Status is updated")
+          setTimeout(() => {
+           Close(); 
+            
+          }, 2000);
+           
          }
         catch(error){
               console.log("so error = ",error)
-        }
+        
+            }
     };
     
 
@@ -125,7 +117,6 @@ console.log("form data = " ,formData)
             <div className="absolute inset-0 bg-black opacity-50" onClick={Close}></div>
 
             
-
             {/* Modal Content */}
             <div className="relative bg-gray-100  rounded-lg shadow-lg z-50 xl:w-[50vw] lg:w- sm:w-[80vw]  w-[100vw] h-[90vh]
              sm:h-[90vh]"> 

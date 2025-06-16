@@ -21,8 +21,8 @@ console.log("no erorr");
         images:req.file.filename,
         price,
         stock,
-        sizes,
-        category
+        sizes:req.body["sizes[]"]||req.body.sizes,
+        category:req.body["category[]"]||req.body.category
     });
     console.log("data is correct",req.file);
     //generate short string to identify the product

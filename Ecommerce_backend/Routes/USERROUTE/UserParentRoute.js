@@ -21,7 +21,8 @@ const Search_Order = require("./Place_Order/Search_Order.js");
 let DeliveryStatus=require("./Place_Order/UpdateDeliveryStatus.js");
 let Add_To_Card=require("./Add_To_Card/Add_To_Card.js");
 let Display_Add_To_Card=require("./Add_To_Card/Display_Add_To_Card.js")
-let Delete_Product_From_Card=require("./Add_To_Card/Delete_Product_from_card.js")
+let Delete_Product_From_Card=require("./Add_To_Card/Delete_Product_from_card.js");
+const TrackProduct = require("./TrackProduct.js");
 
 ParentRoute.post("/",SignUpValidation,SignUpForm)
 ParentRoute.post("/Login",LoginRoute);
@@ -35,5 +36,6 @@ ParentRoute.put("/UpdateDeliveryStatus/:OrderID",DeliveryStatus);
 ParentRoute.post("/Add_To_Card",middleware,Add_To_Card)
 ParentRoute.get("/Display_Add_To_Card",middleware,Display_Add_To_Card)
 ParentRoute.delete("/Delete_Product_From_Card/:CardID",middleware,Delete_Product_From_Card)
+ParentRoute.get("/trackProduct/:OrderId",TrackProduct)
 
 module.exports=ParentRoute

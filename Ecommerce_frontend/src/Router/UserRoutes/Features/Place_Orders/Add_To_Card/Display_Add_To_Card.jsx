@@ -1,7 +1,12 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 import Delete_Product_from_card from "./Delete_From_add_to_card"
 import axios from "axios";
 import { useState,useEffect } from "react";
-import CheckOut from "./CheckOut";
+import Place_Order from "../../Place_Orders/Place_Order.jsx"
+//import CheckOut from "./CheckOut";
 function Display_Add_To_Card(){
     let [OrderProduct,SetOrderProducts]=useState([]);
     let [Loading,SetLoading]=useState(true)
@@ -10,7 +15,7 @@ function Display_Add_To_Card(){
             let response=await axios.get("http://localhost:5555/api/Display_Add_To_Card",{
                 withCredentials:true
             })
-            console.log("order product is fetch : ",response.data)
+            console.log("order is send with a : ",response.data.data)
             SetOrderProducts(response.data?.data||[])
     }
     catch(error){
@@ -23,8 +28,19 @@ function Display_Add_To_Card(){
     useEffect(()=>{
             fetchAddToCard()
     },[])
+
+
+        //for scrolling
+    useEffect(() => {
+  AOS.init({
+    duration: 800, // animation duration
+    once: true     // animate only once
+  });
+}, []);
+
+
     return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100 p-6 ">
       <h1 className="text-3xl font-bold text-center mb-8"
       >🛒 Your Cart <span className="whitespace-nowrap "> ({OrderProduct.length} items) </span>
 
@@ -41,23 +57,19 @@ function Display_Add_To_Card(){
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {OrderProduct.map((item, index) => (
-  <div key={index} className="bg-white p-6 rounded-xl shadow-md">
+  <div key={index}
+   data-aos="flip-left"
+   className="bg-white p-6 rounded-xl shadow-md">
     {/* <h2 className="text-xl font-semibold text-gray-800 mb-2">Product Details</h2> */}
 
       <img
-  src={`http://localhost:5555/UploadItem/UploadPost/${item.ProductID.images}`}
+  src={`http://localhost:5555/UploadItem/UploadPost/${item?.ProductID?.images}`}
   alt="Product"
   className="size-40 sm:size-60  object-cover rounded mb-4"
 />
 
     
     <div className="space-y-2">
-      {/* <p>
-        <span className="font-medium">Title:</span> {item.ProductID?.title}
-      </p> */}
-      {/* <p>
-        <span className="font-medium h-10 overflow-y-auto">Description:</span> {item.ProductID?.description}
-      </p> */}
       <p>
         <span className="font-medium">Price:</span> {item.ProductID?.price}
       </p>
@@ -73,9 +85,10 @@ function Display_Add_To_Card(){
       </p>
       <p className="flex justify-between"> 
       {/* after deleting the page is automatically update with the hlep ofa  refetch */}
-        <Delete_Product_from_card CardID={item._id} refetch={fetchAddToCard} />
+        <Delete_Product_from_card CardID={item._id}  />
       
-      <CheckOut/>
+      {/* <CheckOut/> */}
+      <Place_Order cartItem={item} refetch={fetchAddToCard}/>
       </p>
     </div>
   </div>
