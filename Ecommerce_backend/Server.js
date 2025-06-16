@@ -8,8 +8,7 @@ let App=express();
 App.use(cookieParser())
 App.use(express.json());
 App.use(cors({
-    origin:"https://ecommerce-website-delta-beige.vercel.app/",
-    credentials:true
+    origin:["http://localhost:5173","https://ecommerce-website-delta-beige.vercel.app"]
 }))
 const UserParentRoute = require("./Routes/USERROUTE/UserParentRoute");
 //hum different routes ko ek file mai rakh kr us ko import kr sakta hai
