@@ -9,7 +9,7 @@ let App=express();
 App.use(cors({
     origin:[
         "http://localhost:5173",
-        process.env.React_App_Server_URL
+        "https://ecommerce-website-delta-beige.vercel.app"
     ],
     credentials:true
 }))
