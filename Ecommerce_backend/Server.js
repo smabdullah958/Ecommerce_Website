@@ -8,7 +8,7 @@ let App=express();
 App.use(cookieParser())
 App.use(express.json());
 App.use(cors({
-    origin:["http://localhost:5173","https://ecommerce-website-delta-beige.vercel.app/"],
+    origin:["http://localhost:5173","https://ecommerce-website-delta-beige.vercel.app"],
     credentials:true
 }))
 const UserParentRoute = require("./Routes/USERROUTE/UserParentRoute");
