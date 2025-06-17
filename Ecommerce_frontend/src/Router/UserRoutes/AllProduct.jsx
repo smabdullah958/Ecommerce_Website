@@ -42,7 +42,7 @@ let Navigate=useNavigate()
     let checkLogin=async()=>{
             try{
 
-            let response =await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/checkLogin", { withCredentials: true });
+            let response =await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/api/checkLogin", { withCredentials: true });
             if(response.data.isLoggedIn===true){
                 setIsLoggedIn(true);
                 SetRole(response.data.Role)  //store role
@@ -61,7 +61,7 @@ let Navigate=useNavigate()
 
     let DisplayProduct=async()=>{
         try{
-        let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/UploadItem/DisplayProduct");
+        let response=await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/UploadItem/DisplayProduct");
         console.log(response.data);
         if(response.data){
             //.Product is come forma a backend because in this object the real product is present

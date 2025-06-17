@@ -15,7 +15,7 @@ function Searching({SetProduct,Role}){
             try{
 
             
-                let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/SEARCHING",{
+                let response=await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/api/SEARCHING",{
                     params:{
                     SearchText:Searching.SearchText, //this is used for both title and ProductId
                     price:Searching.price,

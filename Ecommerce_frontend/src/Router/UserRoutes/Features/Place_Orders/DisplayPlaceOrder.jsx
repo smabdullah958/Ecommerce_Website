@@ -22,7 +22,7 @@ let DisplayPlaceOrder=()=>{
     useEffect(()=>{
         let fetchData=async()=>{
             try{
-                let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/DisplayPlaceOrder");
+                let response=await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/api/DisplayPlaceOrder");
                 
                  setData(response.data.result);
                 console.log("data is",response.data);

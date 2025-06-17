@@ -5,7 +5,7 @@ function LogOut({IsLoggedIn,setIsLoggedIn,Role , SetRole}){
 let Navigate=useNavigate();    
     async function LogoutFunction(){
         try{
-        let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/LogOut",{withCredentials:true})
+        let response=await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/api/LogOut",{withCredentials:true})
                    
         console.log("logoout is successfully",response)
             setIsLoggedIn(false)

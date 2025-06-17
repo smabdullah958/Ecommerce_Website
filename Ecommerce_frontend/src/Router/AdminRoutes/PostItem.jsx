@@ -66,7 +66,7 @@ console.log("form data = " ,data)
 
 setloading(true);
   try {
-    const res = await axios.post("https://ecommerce-website-backend-smoky.vercel.app/UploadItem/PostItem", formData, {
+    const res = await axios.post("https://ecommerce-website-backend-ob582n79j.vercel.app/UploadItem/PostItem", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

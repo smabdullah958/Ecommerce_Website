@@ -8,7 +8,7 @@ let navigate=useNavigate();
     async    function DeleteProduct(){
         
         try{
-        let response=await axios.delete(`https://ecommerce-website-backend-smoky.vercel.app/api/Delete_Product_From_Card/${CardID}`,{
+        let response=await axios.delete(`https://ecommerce-website-backend-ob582n79j.vercel.app/api/Delete_Product_From_Card/${CardID}`,{
             withCredentials:true
         })
     console.log("product is deleted",response.data) 

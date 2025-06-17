@@ -9,7 +9,7 @@ function PlaceOrder({cartItem}){
    async function Order(){
 toast.loading("placing your order ...."); 
     try{
-        let response =await axios.post("https://ecommerce-website-backend-smoky.vercel.app/api/PlaceOrder",{
+        let response =await axios.post("https://ecommerce-website-backend-ob582n79j.vercel.app/api/PlaceOrder",{
              Size:cartItem.Size,
             Quantity:cartItem.Quantity,
             ProductID:cartItem.ProductID._id,

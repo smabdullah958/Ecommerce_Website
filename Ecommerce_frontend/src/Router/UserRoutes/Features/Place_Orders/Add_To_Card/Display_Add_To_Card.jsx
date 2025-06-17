@@ -12,7 +12,7 @@ function Display_Add_To_Card(){
     let [Loading,SetLoading]=useState(true)
     async function fetchAddToCard(){
         try{
-            let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/Display_Add_To_Card",{
+            let response=await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/api/Display_Add_To_Card",{
                 withCredentials:true
             })
             console.log("order is send with a : ",response.data.data)
@@ -63,7 +63,7 @@ function Display_Add_To_Card(){
     {/* <h2 className="text-xl font-semibold text-gray-800 mb-2">Product Details</h2> */}
 
       <img
-  src={`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/UploadPost/${item?.ProductID?.images}`}
+  src={item?.ProductID?.images}
   alt="Product"
   className="size-40 sm:size-60  object-cover rounded mb-4"
 />
