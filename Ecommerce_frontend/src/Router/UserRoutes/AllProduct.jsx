@@ -95,7 +95,7 @@ checkLogin()
         if(Loading){
             return(
                 <div className="flex justify-center justify-items-center h-[40vh]">
-            <div className="animate-spin rounded-full h-36 w-36 border-b-4 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-36 w-36 border-b-4 border-blue-600 mt-10"></div>
             </div>
         );}
 
@@ -154,7 +154,7 @@ checkLogin()
                          style={{maxWidth:"220px"}}> 
 
                         {product.images&&(
-                            <img src={`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/UploadPost/${product?.images}`} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl  "  />)}
+                            <img src={product.images} alt={product.name}  className="h-48 w-full object-cover rounded-t-xl  "  />)}
 
                             <div className="bg-white">
                             <h2 className="text-xl font-bold text-gray-800 pl-5 truncate ">

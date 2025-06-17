@@ -14,8 +14,9 @@ let express=require("express");
 const DisplayProductDetail = require("./DisplayProductDetail"); 
 const UpdateProduct = require("./Features/CRUD_Operation_Prouduct/UpdateProduct");
 let AdminRoute=express.Router();
-//it is used for a uploading picture of a item
-AdminRoute.use("/UploadPost",express.static(path.join(__dirname,"../../UploadPost")));
+//it is used for a uploading picture of a item this si only use when we upload image locally
+
+//AdminRoute.use("/UploadPost",express.static(path.join(__dirname,"../../UploadPost")));
 //it is for a picture uploading product
 AdminRoute.post("/PostItem",upload.single("images"),ProductValidation,ProductPost);
 //it is for display

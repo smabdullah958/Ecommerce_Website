@@ -1,9 +1,9 @@
- require("dotenv").config({path:"../.env"});
+//  require("dotenv").config({path:"../.env"});
 // console.log("product listing url",process.env.Mongo_URL)
-// const path = require("path");
-// require("dotenv").config({
-//   path: path.resolve(__dirname, "../.env")
-// });
+ const path = require("path");
+ require("dotenv").config({
+   path: path.resolve(__dirname, "../.env")
+ });
 console.log("product listing url", process.env.Mongo_URL);
 
 let mongoose =require("mongoose");

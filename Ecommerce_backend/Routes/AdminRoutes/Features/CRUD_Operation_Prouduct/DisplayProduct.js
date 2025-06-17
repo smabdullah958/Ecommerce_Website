@@ -1,7 +1,8 @@
-let ProductDatabase=require("../../../../Database/ProductListing.js");
+let ProductDatabase=require("../../../../Database/ProductListing");
 let DisplayProduct=async(req,res)=>{
     try{
-    let Product=await ProductDatabase.find();
+ console.log("dispalyproduct is working")
+        let Product=await ProductDatabase.find();
 console.log(Product)
 res.status(200).json({message:"successfully display data",Product});
 }
