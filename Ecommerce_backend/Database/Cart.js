@@ -6,7 +6,11 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
     console.log(process.env.Mongo_URL)
 
     let mongoose=require("mongoose");
-    mongoose.connect(process.env.Mongo_URL)
+    mongoose.connect(process.env.Mongo_URL,{
+        useNewUrlParser: true,
+      useUnifiedTopology: true,
+
+    })
 
     let Schema=new mongoose.Schema({
         UserID:{
