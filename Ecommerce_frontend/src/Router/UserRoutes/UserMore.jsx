@@ -19,7 +19,7 @@ function UserMore(){
     useEffect(()=>{
         let DisplayProductDetail=async()=>{
             try{
-                let response=await axios.get(`https://ecommerce-website-backend-ob582n79j.vercel.app/UploadItem/ProductDetail/${id}`)
+                let response=await axios.get(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/ProductDetail/${id}`)
                 if(response.data){
                     setproduct(response.data.ProductDetail);
                     console.log(response.data.ProductDetail);
@@ -35,7 +35,7 @@ function UserMore(){
              let checkLogin=async()=>{
             try{
 
-            let response =await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/api/checkLogin", { withCredentials: true });
+            let response =await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/checkLogin", { withCredentials: true });
             if(response.data.isLoggedIn===true){
                 setIsLoggedIn(true);
                 SetRole(response.data.Role)  //store role

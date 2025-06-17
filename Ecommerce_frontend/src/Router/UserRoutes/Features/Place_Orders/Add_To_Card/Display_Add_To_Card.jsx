@@ -12,7 +12,7 @@ function Display_Add_To_Card(){
     let [Loading,SetLoading]=useState(true)
     async function fetchAddToCard(){
         try{
-            let response=await axios.get("https://ecommerce-website-backend-ob582n79j.vercel.app/api/Display_Add_To_Card",{
+            let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/Display_Add_To_Card",{
                 withCredentials:true
             })
             console.log("order is send with a : ",response.data.data)

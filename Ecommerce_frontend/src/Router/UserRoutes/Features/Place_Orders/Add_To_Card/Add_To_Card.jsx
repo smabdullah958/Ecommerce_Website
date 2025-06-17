@@ -15,7 +15,7 @@ let Navigate=useNavigate()
      async function AddProduct(){
         try{
             
-            let response=await axios.post("https://ecommerce-website-backend-ob582n79j.vercel.app/api/Add_To_Card",{
+            let response=await axios.post("https://ecommerce-website-backend-smoky.vercel.app/api/Add_To_Card",{
                 Size:Order.Size,
                 Quantity:Order.Quantity,
                 ProductID:ProductId
@@ -40,7 +40,7 @@ Navigate("/Display_Add_To_Card")
     useEffect(()=>{
         async function fetchDetail(){
             try{
-                let response = await axios.get(`https://ecommerce-website-backend-ob582n79j.vercel.app/UploadItem/ProductDetail/${ProductId}`);
+                let response = await axios.get(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/ProductDetail/${ProductId}`);
                 let product=response.data.ProductDetail //ProductDetail is come from a backend
                
 //these are used for fetching the sizes from a admin 

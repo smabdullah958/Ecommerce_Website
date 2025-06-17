@@ -5,7 +5,7 @@ import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 
 
@@ -87,7 +87,7 @@ console.log("form data = " ,formData)
        try{
 
           
-           let response= await axios.put(`https://ecommerce-website-backend-ob582n79j.vercel.app/UploadItem/UpdateProduct/${ProductId}`, formData,
+           let response= await axios.put(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/UpdateProduct/${ProductId}`, formData,
             {
                headers:{
                  "Content-Type":"multipart/form-data"
