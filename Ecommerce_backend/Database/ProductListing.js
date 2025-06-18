@@ -52,4 +52,6 @@ let Sch=new mongoose.Schema({
 });
 let Model=mongoose.model("Products",Sch)
 
+console.log("product is listed : ",Model)
+
 module.exports=Model;

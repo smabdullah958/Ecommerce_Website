@@ -22,6 +22,7 @@ console.log("no erorr");
     if(!req.file){
         return res.status(400).json({message:"file is required"});
     }
+    
         //upload to a cloudinary
         let img=await cloudinary.uploader.upload(req.file.path,{
             folder:"T_Shirts"  //this is a folder name which is present ina  cloudinary

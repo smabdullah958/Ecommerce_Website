@@ -4,11 +4,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 console.log(process.env.Mongo_URL)
 let mongoose =require("mongoose");
-mongoose.connect(process.env.Mongo_URL,{
-        useNewUrlParser: true,
-      useUnifiedTopology: true,
-
-    });
+mongoose.connect(process.env.Mongo_URL);
 let Sch=new mongoose.Schema({
     OrderID:{  //this is used to identify the order or track the order
         type:String,
