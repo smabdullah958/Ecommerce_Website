@@ -6,13 +6,31 @@ console.log(process.env.JWT_Expire);
 let express=require("express");
 let cookieParser=require("cookie-parser")
 let App=express();
+// App.use(cors({
+//     origin:[
+//         "http://localhost:5173",
+//         "https://ecommerce-website-delta-beige.vercel.app"
+//     ],
+//     credentials:true
+// }))
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ecommerce-website-delta-beige.vercel.app"
+];
+
 App.use(cors({
-    origin:[
-        "http://localhost:5173",
-        "https://ecommerce-website-delta-beige.vercel.app"
-    ],
-    credentials:true
-}))
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
+
+
 
 App.use(cookieParser())
 App.use(express.json());
