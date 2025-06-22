@@ -19,7 +19,7 @@ function UserMore(){
     useEffect(()=>{
         let DisplayProductDetail=async()=>{
             try{
-                let response=await axios.get(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/ProductDetail/${id}`)
+                let response=await axios.get(`http://localhost:5555/UploadItem/ProductDetail/${id}`)
                 if(response.data){
                     setproduct(response.data.ProductDetail);
                     console.log(response.data.ProductDetail);
@@ -35,7 +35,7 @@ function UserMore(){
              let checkLogin=async()=>{
             try{
 
-            let response =await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/checkLogin", { withCredentials: true });
+            let response =await axios.get("http://localhost:5555/api/checkLogin", { withCredentials: true });
             if(response.data.isLoggedIn===true){
                 setIsLoggedIn(true);
                 SetRole(response.data.Role)  //store role
@@ -74,8 +74,11 @@ function UserMore(){
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2  pb-5 ">
                                     {product.images&&(
-                            <img src={product.images} alt={product.name}  className=" size-80   sm:w-[80vw] lg:h-[85vh] sm:h-[60vh]    rounded-t-xl   sm:ml-5 ml-3"  />)}
+                            <img src={`http://localhost:5555/UploadItem/UploadPost/${product.images}` } alt={product.name}  className=" size-80   sm:w-[80vw] lg:h-[85vh] sm:h-[60vh]    rounded-t-xl   sm:ml-5 ml-3"  />)}
                             
+
+
+
                             <div className="grid pl-10 ">
                         <h2 className="text-2xl sm:text-4xl  font-bold text-gray-800 ml-5 mt-5 lg:mt-0  lg:mb-0   sm:max-w-[500px] max-w-[300px] overflow-hidden  ">
                                         {product.title}
@@ -83,6 +86,11 @@ function UserMore(){
                         
                         <h2 className=" ml-5 my-5 lg:my-0 text-2xl font-semibold  ">
                                    Rs {product.price } 
+                            </h2>
+
+                            
+                        <h2 className=" ml-5 my-5 lg:my-0 text-2xl font-semibold  ">
+                                   available Stocks : {product.stock } 
                             </h2>
 
 
@@ -93,9 +101,10 @@ function UserMore(){
                                                 {/* isLoggedIn is passed to check user is log in or not and product id is used that on which we click and alos pass the id  */}
 
                                                 {(Role==="User"||Role===null)?
-                                                <Add_To_Card IsLoggedIn={IsLoggedIn} ProductId={product._id}/>:null
-                                                }
-
+                                        <Add_To_Card IsLoggedIn={IsLoggedIn} ProductId={product._id} 
+                                        stocks={product.stock} />:null
+                                             }
+                                             {/* stocks is passed becuase if a user want to order more products than the existing than it show error  */}
 
 
                         <p className="text-xl font-semibold   break-words pl-5 sm:max-w-[500px] max-w-[300px] overflow-y-auto h-20 ">

@@ -7,7 +7,9 @@
 console.log("product listing url", process.env.Mongo_URL);
 
 let mongoose =require("mongoose");
-mongoose.connect(process.env.Mongo_URL);
+mongoose.connect(process.env.Mongo_URL).then(() => console.log("✅ MongoDB connected successfully"))
+.catch((err) => {
+    console.error("❌ MongoDB connection error:", err.message)});
 let Sch=new mongoose.Schema({
     title:{
         type:String,

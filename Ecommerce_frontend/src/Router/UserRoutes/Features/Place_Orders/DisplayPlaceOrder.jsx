@@ -22,7 +22,7 @@ let DisplayPlaceOrder=()=>{
     useEffect(()=>{
         let fetchData=async()=>{
             try{
-                let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/DisplayPlaceOrder");
+                let response=await axios.get("http://localhost:5555/api/DisplayPlaceOrder");
                 
                  setData(response.data.result);
                 console.log("data is",response.data);
@@ -45,7 +45,7 @@ let DisplayPlaceOrder=()=>{
 
 
     return (
-<div className="p-6 pt-0 "> 
+<div className="p-6 pt-0 bg-gradient-to-tr from-slate-200 to-slate-100  "> 
 {/* //SearchResult is pass that if we can search than it show on a UI without this it is change the UI */}
 <div className=" flex flex-wrap">
 <Order_Searching SearchResult={setData}  />

@@ -1,4 +1,4 @@
-import {toast , Toaster} from "sonner"
+import {toast } from "sonner"
 //for redirect
 import { useNavigate } from 'react-router-dom';
 
@@ -35,7 +35,7 @@ let Navigate=useNavigate()
    async function POSTAPI(data){
     try{
         clearErrors() //it will clrear previous error
-    let response=await axios.post("https://ecommerce-website-backend-smoky.vercel.app/api/",data,{withCredentials:true});
+    let response=await axios.post("http://localhost:5555/api/",data,{withCredentials:true});
     
 console.log("data is postted",response)    
 toast.success("signup successfully")
@@ -59,7 +59,6 @@ catch(error){
     return(
         <div className="min-h-screen bg-gradient-to-br  from-slate-100 to-slate-300 flex items-center justify-center p-4">
 
-        <Toaster richColors position="top-left"/>
         <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-4xl">
         <h1 className='sm:my-7  text-5xl font-bold sm:ml-20   '>SignUp form</h1>
         <div className='flex justify-center'>

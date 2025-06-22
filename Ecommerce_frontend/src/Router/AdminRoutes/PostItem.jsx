@@ -1,10 +1,9 @@
-import {toast,Toaster} from "sonner"
+import {toast} from "sonner"
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 let ListingValidation=yup.object().shape({
 title:yup.string().required("all field are mandatory"),
@@ -34,8 +33,6 @@ category:yup.array().of(yup.string()).required("all fields are mandatory").min(1
 
 function PostItem(){
 
-  let [loading,setloading]=useState(false);
-
   let navigate=useNavigate()  
 
     let {
@@ -64,14 +61,12 @@ function PostItem(){
   formData.append("images", data.images[0]); // 👈 this must match multer field name
 console.log("form data = " ,data)
 
-setloading(true);
   try {
-    const res = await axios.post("https://ecommerce-website-backend-smoky.vercel.app/UploadItem/PostItem", formData, {
+    const res = await axios.post("http://localhost:5555/UploadItem/PostItem", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    setloading(false);
     console.log("Upload Success:", res.data);
     toast.success("Product post successfully!")
     setTimeout(() => {
@@ -86,12 +81,8 @@ setloading(true);
     return(
       
         <div className=" min-h-screen bg-gradient-to-br from-gray-200 to-purple-100 p-6">
-          {
-            loading && <p className="text-blue-600 text-center mb-2">Uploading, please wait...</p>
-          }
-
+          
                     <h1 className=' sm:mb-7   font-bold sm:ml-20 ml-10  text-3xl mt-2'>Product Listing</h1>
-                    <Toaster richColors position="top-center"/>
                     <div className="flex justify-center  ">
                     
                         <form  className='grid grid-cols-1      sm:content-center justify-items-center  gap-0   pb-5   sm:mb-5 xl:ml-0 overflow-x-hidden'>
@@ -168,10 +159,9 @@ setloading(true);
       
                       
                          <button type="submit" 
-                         disabled={loading}
                           onClick={handleSubmit((data)=>PostItem(data))} 
                          className='sm:col-span-2 border-2 border-black rounded-lg p-1 bg-slate-300 hover:bg-slate-400 transition-all duration-500 m-5 shadow-black shadow-md '> 
-                         {loading?"Uplaoding":"Listing"}
+                         Listing
                          </button>
 
             </form>

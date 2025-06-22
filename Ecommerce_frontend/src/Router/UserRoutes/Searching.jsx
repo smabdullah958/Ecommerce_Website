@@ -15,7 +15,7 @@ function Searching({SetProduct,Role}){
             try{
 
             
-                let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/SEARCHING",{
+                let response=await axios.get("http://localhost:5555/api/SEARCHING",{
                     params:{
                     SearchText:Searching.SearchText, //this is used for both title and ProductId
                     price:Searching.price,
@@ -39,7 +39,7 @@ function Searching({SetProduct,Role}){
                 SetSearching((prev)=>
                  ({...prev,SearchText:e.target.value}))}/>
 
-                <select name="range" className="p-1  w-[30vw] hover:bg-gray-200 transition duration-1000 rounded-lg border-2 border-black border-solid sm:w-40   " value={Searching.price} onChange={(e)=>
+                <select name="range" className="p-1  w-[40vw] hover:bg-gray-200 transition duration-1000 rounded-lg border-2 border-black border-solid sm:w-40   " value={Searching.price} onChange={(e)=>
                 SetSearching((prev)=>
                 ({...prev,price:e.target.value}))}>
                     <option value="">select range</option>

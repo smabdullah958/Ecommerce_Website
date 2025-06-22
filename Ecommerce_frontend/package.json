@@ -14,6 +14,7 @@
     "aos": "^2.3.4",
     "axios": "^1.9.0",
     "cloudinary": "^2.6.1",
+    "date-fns": "^4.1.0",
     "express": "^5.1.0",
     "node": "^20.19.2",
     "react": "^18.3.1",
@@ -21,6 +22,7 @@
     "react-hook-form": "^7.56.4",
     "react-router": "^7.6.0",
     "react-router-dom": "^7.6.1",
+    "recharts": "^2.15.3",
     "router": "^2.2.0",
     "sonner": "^2.0.5",
     "yup": "^1.6.1"

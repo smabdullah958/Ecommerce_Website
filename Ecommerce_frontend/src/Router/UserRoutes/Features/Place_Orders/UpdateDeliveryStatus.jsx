@@ -1,4 +1,4 @@
-import { Toaster,toast } from "sonner";
+import { toast } from "sonner";
 import axios from "axios";
 import { useEffect, useState  } from "react";
 
@@ -20,7 +20,7 @@ useEffect(()=>{
 
    async function UpdateStatusAndId(){
 try{
-    let response= await axios.put(`https://ecommerce-website-backend-smoky.vercel.app/api/UpdateDeliveryStatus/${Order.OrderID}`,{
+    let response= await axios.put(`http://localhost:5555/api/UpdateDeliveryStatus/${Order.OrderID}`,{
       TcsId:UpdateStatus.TcsId,
       deliveryStatus:UpdateStatus.deliveryStatus  
     });
@@ -38,7 +38,6 @@ catch(error){
 }
 return(
 <div className=" fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <Toaster richColors position="top-center"/>
      
     <div className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-[80vh] h-[70vh] sm:h-[60vh] ">
         <div className="text-2xl font-bold grid sm:grid-cols-2 grid-cols-1  ">

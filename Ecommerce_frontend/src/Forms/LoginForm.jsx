@@ -20,7 +20,7 @@ let Navigate=useNavigate();
     async function LoginPostAPI(data){
       try{
         clearErrors();
-        let response=await axios.post("https://ecommerce-website-backend-smoky.vercel.app/api/Login",data,{withCredentials:true});
+        let response=await axios.post("http://localhost:5555/api/Login",data,{withCredentials:true});
         if(response.data){
         console.log(response.data);
         toast.success("Login Successfully");

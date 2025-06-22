@@ -87,7 +87,7 @@ console.log("form data = " ,formData)
        try{
 
           
-           let response= await axios.put(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/UpdateProduct/${ProductId}`, formData,
+           let response= await axios.put(`http://localhost:5555/UploadItem/UpdateProduct/${ProductId}`, formData,
             {
                headers:{
                  "Content-Type":"multipart/form-data"
@@ -118,7 +118,8 @@ console.log("form data = " ,formData)
 
             
             {/* Modal Content */}
-            <div className="relative bg-gray-100  rounded-lg shadow-lg z-50 xl:w-[50vw] lg:w- sm:w-[80vw]  w-[100vw] h-[90vh]
+            <div className="relative bg-gray-100  rounded-lg shadow-lg z-50 xl:w-[50vw] lg:w- sm:w-[80vw]  
+            w-[100vw] h-[90vh]
              sm:h-[90vh]"> 
             <div >
 

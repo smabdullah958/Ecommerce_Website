@@ -10,9 +10,11 @@ import Place_Order from "../../Place_Orders/Place_Order.jsx"
 function Display_Add_To_Card(){
     let [OrderProduct,SetOrderProducts]=useState([]);
     let [Loading,SetLoading]=useState(true)
+    //it is used when we click on a place to order than only once it show the toast
+    let [ToastShow,SetToastShow]=useState(false)
     async function fetchAddToCard(){
         try{
-            let response=await axios.get("https://ecommerce-website-backend-smoky.vercel.app/api/Display_Add_To_Card",{
+            let response=await axios.get("http://localhost:5555/api/Display_Add_To_Card",{
                 withCredentials:true
             })
             console.log("order is send with a : ",response.data.data)
@@ -62,8 +64,10 @@ function Display_Add_To_Card(){
    className="bg-white p-6 rounded-xl shadow-md">
     {/* <h2 className="text-xl font-semibold text-gray-800 mb-2">Product Details</h2> */}
 
+
+
       <img
-  src={item?.ProductID?.images}
+  src= {`http://localhost:5555/UploadItem/UploadPost/${item?.ProductID?.images}`}
   alt="Product"
   className="size-40 sm:size-60  object-cover rounded mb-4"
 />
@@ -88,7 +92,7 @@ function Display_Add_To_Card(){
         <Delete_Product_from_card CardID={item._id}  />
       
       {/* <CheckOut/> */}
-      <Place_Order cartItem={item} refetch={fetchAddToCard}/>
+      <Place_Order cartItem={item} refetch={fetchAddToCard}  />
       </p>
     </div>
   </div>

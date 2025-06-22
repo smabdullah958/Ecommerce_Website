@@ -1,15 +1,17 @@
-import { Toaster,toast } from "sonner";
+import { toast } from "sonner";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 //here product id is used to identify that which product is begin order
 function PlaceOrder({cartItem}){
     let Navigate=useNavigate();
-   
+    let [Loading,SetLoading]=useState(false)
 
    async function Order(){
-toast.loading("placing your order ...."); 
+        SetLoading(true)
+
     try{
-        let response =await axios.post("https://ecommerce-website-backend-smoky.vercel.app/api/PlaceOrder",{
+        let response =await axios.post("http://localhost:5555/api/PlaceOrder",{
              Size:cartItem.Size,
             Quantity:cartItem.Quantity,
             ProductID:cartItem.ProductID._id,
@@ -27,14 +29,19 @@ toast.loading("placing your order ....");
     }
     catch(error){
         console.log(" their is a error = ",error)
+        if(error.response.status===400){
+            toast.error(error.response.data.message)
+        }
     }
     }
     return (
          <div>
-         <Toaster richColors position="top-center"/>
-                 <button className="border-2 border-black rounded-md p-1  bg-gray-200  duration-500 transition-all shadow-gray-700 shadow-md  hover:bg-gray-300 cursor-pointer opacity-100"
+                 <button className= {`border-2 border-black rounded-md p-1  bg-gray-200  duration-500 transition-all shadow-gray-700 shadow-md ${Loading ?"cursor-not-allowed opacity-30"
+                 :" hover:bg-gray-300 cursor-pointer opacity-100"} `}
+                  disabled={Loading}
                   onClick={Order}>
-                     Place order
+
+                     {Loading?"Process...":"Place order"}
                     </button> 
         </div>
     )

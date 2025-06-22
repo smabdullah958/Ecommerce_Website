@@ -1,9 +1,9 @@
-import { Toaster,toast } from "sonner";
+import { toast } from "sonner";
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router";
 
-function Add_To_Card({IsLoggedIn,ProductId}){
+function Add_To_Card({IsLoggedIn,ProductId,stocks}){
 // here we can only seleect  the  sizes who are selected by a admin
     let [Order,SetOrder]=useState({
         Quantity:1,
@@ -15,7 +15,7 @@ let Navigate=useNavigate()
      async function AddProduct(){
         try{
             
-            let response=await axios.post("https://ecommerce-website-backend-smoky.vercel.app/api/Add_To_Card",{
+            let response=await axios.post("http://localhost:5555/api/Add_To_Card",{
                 Size:Order.Size,
                 Quantity:Order.Quantity,
                 ProductID:ProductId
@@ -40,7 +40,7 @@ Navigate("/Display_Add_To_Card")
     useEffect(()=>{
         async function fetchDetail(){
             try{
-                let response = await axios.get(`https://ecommerce-website-backend-smoky.vercel.app/UploadItem/ProductDetail/${ProductId}`);
+                let response = await axios.get(`http://localhost:5555/UploadItem/ProductDetail/${ProductId}`);
                 let product=response.data.ProductDetail //ProductDetail is come from a backend
                
 //these are used for fetching the sizes from a admin 
@@ -63,7 +63,6 @@ Navigate("/Display_Add_To_Card")
   
 return (
     <div>
-    <Toaster richColors position="top-right"/>
             <select className="p-2 mb-3 w-[50vw] bg-gray-200 hover:bg-gray-300 transition duration-1000 rounded-lg border-2 border-black border-solid lg:w-72   " value={Order.Size} onChange={(e)=>{
                 SetOrder({
                     ...Order,
@@ -77,19 +76,24 @@ return (
 
             </select>
             <br/>
-            <button onClick={(e)=>{
+            <button onClick={()=>{
+                    if(Order.Quantity>=stocks){
+                        return toast.error(`we have only ${stocks} items is available `)
+                    }
+
                 SetOrder({
                 ...Order,
                 Quantity:Order.Quantity+1
                 })
             }} className="border-2 border-black rounded-md p-1  bg-gray-200  duration-500 tranition-all shadow-gray-500 shadow-md hover:bg-gray-300    opacity-100 size-10 mr-2">
-            +</button>
+            +
+            </button>
             <span className="text-xl font-bold">  
                     {Order.Quantity}    
                             </span>
                        
-            <button onClick={(e)=>{
-               if(Order.Quantity===0){
+            <button onClick={()=>{
+               if(Order.Quantity===1){
                 toast.error("Quantity can not be zero");
                }
                else{

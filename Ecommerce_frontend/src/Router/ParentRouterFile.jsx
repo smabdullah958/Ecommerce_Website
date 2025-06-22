@@ -23,12 +23,15 @@ import AdminHome  from "./AdminRoutes/AdminHome.jsx";
 import PostItem from "./AdminRoutes/PostItem.jsx";
 import AdminMore from "./AdminRoutes/AdminMore.jsx";
 import DisplayPlaceOrder from "./UserRoutes/Features/Place_Orders/DisplayPlaceOrder.jsx";
+import Charts from "./UserRoutes/Charts.jsx";
+import { Toaster } from "sonner";
 
 
 
 function App(){
     return (
         <div >
+        <Toaster richColors position="top-center"/>
 <main>        
             <Routes>
                 {/* for user Routes */}
@@ -60,6 +63,7 @@ function App(){
                <Route path="/Post" element={<PostItem/>}/>
                <Route path="/Order_Management" element={<DisplayPlaceOrder/>}/>
                <Route path="/" element={<Home />}/>
+                <Route path="/yearly_Sales" element={<Charts/>}/>
 
                </Route>
               <Route path="*" element={<PageNotFound/>}/>

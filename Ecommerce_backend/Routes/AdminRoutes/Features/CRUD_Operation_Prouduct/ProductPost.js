@@ -1,9 +1,3 @@
-//for deleting file from a local system
-fs=require("fs")
-
-
-//for cloudinary
-let cloudinary=require("../../../../Cloudinary_Config");
 
 let {validationResult}=require("express-validator");
 let ProductDatabase=require("../../../../Database/ProductListing")
@@ -22,18 +16,11 @@ console.log("no erorr");
     if(!req.file){
         return res.status(400).json({message:"file is required"});
     }
-    
-        //upload to a cloudinary
-        let img=await cloudinary.uploader.upload(req.file.path,{
-            folder:"T_Shirts"  //this is a folder name which is present ina  cloudinary
-        });
-            //for deleteing image form  local system
-        fs.unlinkSync(req.file.path)
 
     let data=new ProductDatabase({
         title,
         description,
-        images:img.secure_url,       //save image url
+       images:req.file.filename,
         price,
         stock,
         sizes:req.body["sizes[]"]||req.body.sizes,

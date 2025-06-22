@@ -5,6 +5,9 @@ let upload=require("./multer");
 let ProductValidation=require("../../validation/ProductListingValidation")
 let DisplayProduct=require("./Features/CRUD_Operation_Prouduct/DisplayProduct");
 let DeleteProduct=require("./Features/CRUD_Operation_Prouduct/Delete_Product");
+//for displaying charts
+const Chart = require("../AdminRoutes/Chart.js");
+
 
 //this is fro a function 
 let ProductPost=require("./Features/CRUD_Operation_Prouduct/ProductPost");
@@ -16,7 +19,7 @@ const UpdateProduct = require("./Features/CRUD_Operation_Prouduct/UpdateProduct"
 let AdminRoute=express.Router();
 
 //it is used for a uploading picture of a item this is only use when we upload image locally
-//AdminRoute.use("/UploadPost",express.static(path.join(__dirname,"../../UploadPost")));
+AdminRoute.use("/UploadPost",express.static(path.join(__dirname,"../../UploadPost")));
 
 //it is for a picture uploading product
 AdminRoute.post("/PostItem",upload.single("images"),ProductValidation,ProductPost);
@@ -30,5 +33,9 @@ AdminRoute.put("/UpdateProduct/:id",upload.single("images"),ProductValidation,Up
 
 //for delete product
 AdminRoute.delete("/DeleteProduct/:id",DeleteProduct);
+
+//for displaying charts
+AdminRoute.get("/Monthly_Sales",Chart)
+
 
 module.exports=AdminRoute;

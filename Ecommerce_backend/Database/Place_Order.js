@@ -4,7 +4,9 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 console.log(process.env.Mongo_URL)
 let mongoose =require("mongoose");
-mongoose.connect(process.env.Mongo_URL);
+mongoose.connect(process.env.Mongo_URL).then(() => console.log("✅ MongoDB connected successfully"))
+.catch((err) => {
+    console.error("❌ MongoDB connection error:", err.message)});
 let Sch=new mongoose.Schema({
     OrderID:{  //this is used to identify the order or track the order
         type:String,
@@ -44,11 +46,6 @@ let Sch=new mongoose.Schema({
         type:String,
         default:null
     },
-    // PayementStatus:{
-    //     type:String,
-    //     default:"Pending",
-    //     enum:["Pending","Recieve"] 
-    // }
 },{
         timestamps:true //this is used to store the created at and updated at time
    }); 
