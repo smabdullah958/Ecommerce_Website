@@ -324,7 +324,7 @@ function AllProduct() {
             )}
 
             <h2 className="text-xl font-bold text-gray-800 truncate mb-1 px-2">{product.title}</h2>
-            <h3 className="text-lg font-semibold text-indigo-600 px-2">Rs {product.price}</h3>
+            <h3 className ="text-lg font-semibold text-indigo-600 px-2">Rs {product.price}</h3>
 
             {(Role === "User" || Role === null) && (
               <Link
