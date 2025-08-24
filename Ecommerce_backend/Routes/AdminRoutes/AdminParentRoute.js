@@ -22,7 +22,7 @@ let AdminRoute=express.Router();
 AdminRoute.use("/UploadPost",express.static(path.join(__dirname,"../../UploadPost")));
 
 //it is for a picture uploading product
-AdminRoute.post("/PostItem",upload.single("images"),ProductValidation,ProductPost);
+AdminRoute.post("/PostItem",upload  .single("images"),ProductValidation,ProductPost);
 
 //it is for display
 AdminRoute.get("/DisplayProduct",DisplayProduct) 

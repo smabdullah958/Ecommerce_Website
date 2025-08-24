@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { 
     LineChart,Line ,XAxis,YAxis,CartesianGrid,Tooltip,ResponsiveContainer } from "recharts";
-import {format} from "date-fns";
+import {format,subDays} from "date-fns";
 function Charts(){
     let [ChartData,SetChartData]= useState([]);
 
@@ -14,21 +14,28 @@ function Charts(){
                         let order=response.data.result;
 
                         //collect the items base of 15 days
-                        let Daily_Sales={};
+                        //or        
+                        // Step 1: Generate past 15 days with default 0 sales
+                let Daily_Sales = {};
+                for (let i = 14; i >= 0; i--) {
+                    let day = format(subDays(new Date(), i), "d MMM"); 
+                    Daily_Sales[day] = 0;  // default 0 sales
+                }
+
 
                         order.forEach((order)=>{
           
                             let day=format(
                                 new Date(order.createdAt),"d MMM"       //formed date like 15 june 16 june
                             );
-                            //aghr din mai ek be sale na ho to sale 0 kr do
-                            if(!Daily_Sales[day]){
-                                Daily_Sales[day]=0;
-                            }
+                                // Check if this day exists in my last 15-day ”
+                                //      If yes → update daily sales
+                                //     If no → ignore (older data)
+                            if(Daily_Sales[day]!==undefined){
                             Daily_Sales[day]+=order.Quantity;
-                        
+                            }
                         })
-                            //now convert to arrray
+                            //now convert to arrray for a charts
                             let formattedData=Object.entries(Daily_Sales).map(([day,quantity])=>({
                             day,
                             quantity

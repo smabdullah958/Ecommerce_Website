@@ -18,7 +18,7 @@ yesterday.setHours(23,59,59,999);
 let result=await Orders.find(   { 
       createdAt:  {
            $gte:FifteenDayAgo,
-            $lte:yesterday
+            $lte:today
         },
     })
 .populate("ProductID","price title")
@@ -29,5 +29,5 @@ catch(error){
     console.log("erorr",error);
     res.status(500).json({message:"internal errro"})
 }
-}
+} 
 module.exports = Chart;
